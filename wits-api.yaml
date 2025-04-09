@@ -1,0 +1,2974 @@
+openapi: 3.0.3
+info:
+  title: wits API
+  version: 1.0.0
+  description: This url prefroms full api documentation
+  contact:
+    name: wits telegram channel
+paths:
+  /auth/add-wallet-unsafe/:
+    post:
+      operationId: auth_add_wallet_unsafe_create
+      description: add a wallet without sign confirmation to an account
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+              required:
+              - address
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAddress'
+          description: wallet added successfully
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: wallet already exists
+  /auth/add-wallets/:
+    post:
+      operationId: auth_add_wallets_create
+      description: add wallet to profile with a signature to verify the ownership
+        of the wallet
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user.
+                signature:
+                  type: string
+                  description: The signature of the wallet address.
+                nonce:
+                  type: string
+              required:
+              - address
+              - signature
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: wallet already exists
+  /auth/change-wallet-unsafe/:
+    post:
+      operationId: auth_change_wallet_unsafe_create
+      description: Change a user's wallet without sign confirmation
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+              required:
+              - address
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAddress'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: wallet not found
+  /auth/change-wallets/:
+    post:
+      operationId: auth_change_wallets_create
+      description: change a connected wallet with a signature to verify the ownership
+        of the wallet
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user.
+                signature:
+                  type: string
+                  description: The signature of the wallet address.
+                nonce:
+                  type: string
+                  description: a random string for uniqueness of the sign value to
+                    prevent using a used sign.
+              required:
+              - address
+              - signature
+              - nonce
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: successful response
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: wallet not found
+  /auth/create-message/:
+    post:
+      operationId: auth_create_message_create
+      description: Create a sample message to sign with a wallet for verifying the
+        wallet owner
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: sample
+              required:
+              - address
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: Message to be signed by user wallet
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: wallet already exists
+  /auth/discord/:
+    get:
+      operationId: auth_discord_retrieve
+      description: Create an url for user to be redirected and connect thier discord
+        profile
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+          description: Authentication link for discord has been created
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: user already has Discord connection
+    delete:
+      operationId: auth_discord_destroy
+      description: Disconnect discord profile from the app
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: Authentication link for discord has been created
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: No Discord connection found
+  /auth/discord/callback/:
+    get:
+      operationId: auth_discord_callback_retrieve
+      description: A callback url for discord OAuth2 to connect discord profile after
+        discord login
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    description: discord username
+                  discord_id:
+                    type: string
+                    description: discord public user id
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  error detail:
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                      url:
+                        type: string
+                      method:
+                        type: string
+                      status_code:
+                        type: integer
+                      header:
+                        type: string
+                      response_text:
+                        type: string
+          description: Discord API error
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: User already has Discord connection
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Unexpected server error
+  /auth/info/:
+    get:
+      operationId: auth_info_retrieve
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+    put:
+      operationId: auth_info_update
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+    patch:
+      operationId: auth_info_partial_update
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfile'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /auth/telegram/private/:
+    patch:
+      operationId: auth_telegram_private_partial_update
+      description: ' Update telegram visibility to other users'
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_private:
+                  type: boolean
+              required:
+              - is_private
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: telegram visibility changed
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: is_private field is required
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: No Telegram connection found
+  /auth/twitter/:
+    get:
+      operationId: auth_twitter_retrieve
+      description: connect twitter integration to profile
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+          description: Return OAuth link
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: twitter did not respond
+    delete:
+      operationId: auth_twitter_destroy
+      description: deletes the user twitter connection
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: No twitter connection found
+  /auth/twitter/callback/:
+    get:
+      operationId: auth_twitter_callback_retrieve
+      description: twitter callback url for verifying and connecting twitter integration
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          description: Twitter account connected
+  /auth/user/all-connections/:
+    get:
+      operationId: auth_user_all_connections_list
+      description: send user's all connected integrations
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: {}
+                  description: Unspecified response body
+          description: ''
+  /auth/user/check-username/:
+    post:
+      operationId: auth_user_check_username_create
+      description: Sample
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: <Username> is available
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: Bad request
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: The username <username> is already in use.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: Username must be more than 3 characters, contain at least one
+            letter, and only contain letters, digits and @/./+/-/_.
+  /auth/user/connect/brightid/:
+    post:
+      operationId: auth_user_connect_brightid_create
+      description: Deprecated
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user to login/register.
+                signature:
+                  type: string
+                  description: The signature of the wallet address.
+              required:
+              - address
+              - signature
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: User profile is returned
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Invalid request
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Invalid signature
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Sponsorship process is ongoing. Please try again in five minutes.
+  /auth/user/connect/ens/:
+    post:
+      operationId: auth_user_connect_ens_create
+      description: allows users to connect their wallet ENS integration and save the
+        username
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ENSConnection'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ENSConnection'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ENSConnection'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ENSConnection'
+          description: ''
+  /auth/user/connect/farcaster/:
+    post:
+      operationId: auth_user_connect_farcaster_create
+      description: connects user's farcaster account
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FarcasterConnection'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FarcasterConnection'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FarcasterConnection'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FarcasterConnection'
+          description: ''
+  /auth/user/connect/gitcoin-passport/:
+    post:
+      operationId: auth_user_connect_gitcoin_passport_create
+      description: connects gitcoin passport integration
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GitcoinPassportConnection'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GitcoinPassportConnection'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GitcoinPassportConnection'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitcoinPassportConnection'
+          description: ''
+  /auth/user/connect/lens/:
+    post:
+      operationId: auth_user_connect_lens_create
+      description: connects Lens integration
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LensConnection'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LensConnection'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LensConnection'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LensConnection'
+          description: ''
+  /auth/user/disconnect/ens/{id}/:
+    delete:
+      operationId: auth_user_disconnect_ens_destroy
+      description: deletes the user ENS integration
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /auth/user/disconnect/farcaster/:
+    delete:
+      operationId: auth_user_disconnect_farcaster_destroy
+      description: deletes user's farcaster connection
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /auth/user/disconnect/lens/{id}/:
+    post:
+      operationId: auth_user_disconnect_lens_create
+      description: ' Disconnects user''s lens integration'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user to login/register.
+                signature:
+                  type: string
+                  description: The signature of the wallet address.
+              required:
+              - address
+              - signature
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: User profile is returned
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Invalid request
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Invalid signature
+    delete:
+      operationId: auth_user_disconnect_lens_destroy
+      description: ' Disconnects user''s lens integration'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /auth/user/set-username/:
+    post:
+      operationId: auth_user_set_username_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: Username successfully Set
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: Bad request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: |-
+            This username already exists.
+            try another one.
+  /auth/user/sponsor/:
+    post:
+      operationId: auth_user_sponsor_create
+      description: create a verification link through brightid authentication system
+        for user to login and connect their brightid to the app
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user to login/register.
+              required:
+              - address
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  verification_link:
+                    type: string
+                  qr_content:
+                    type: string
+          description: verification link and qr content is returned
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: Invalid request
+  /auth/users/{id}/:
+    get:
+      operationId: auth_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /auth/users/{id}/connections/:
+    get:
+      operationId: auth_users_connections_list
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: {}
+                  description: Unspecified response body
+          description: returns all user's connections
+  /auth/users/{id}/stats/:
+    get:
+      operationId: auth_users_stats_retrieve
+      description: returns authenticated user stats
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - auth
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rank:
+                    type: string
+                  winrate:
+                    type: integer
+                  quiz_count:
+                    type: integer
+          description: test
+  /auth/verify-wallet/:
+    post:
+      operationId: auth_verify_wallet_create
+      description: authenticate with a wallet sign to verify the owner of the wallet
+        and login or register
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: The wallet address of the user to login/register.
+                signature:
+                  type: string
+                  description: The signature of the wallet address.
+                nonce:
+                  type: string
+                  description: a random string for uniqueness of the sign value to
+                    prevent using a used sign.
+              required:
+              - address
+              - signature
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: user profile data with a token
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: invalid data
+  /quiz/{user_id}/competitions/:
+    get:
+      operationId: quiz_competitions_list_2
+      description: See a user's registered competitions
+      parameters:
+      - in: path
+        name: userId
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileUserCompetition'
+          description: ''
+  /quiz/claim-prize/:
+    get:
+      operationId: quiz_claim_prize_list
+      description: returns all of users no-claimed wins
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserCompetition'
+          description: ''
+    post:
+      operationId: quiz_claim_prize_create
+      description: create a new claim request from user
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_competition_id:
+                  type: string
+              required:
+              - user_competition_id
+      security:
+      - tokenAuth: []
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: string
+          description: Claim process started
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: invalid request
+  /quiz/competition/{id}/qr-code/:
+    get:
+      operationId: quiz_competition_qr_code_retrieve
+      description: Generates a QR code to enroll in quiz
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+          description: ''
+  /quiz/competitions/:
+    get:
+      operationId: quiz_competitions_list
+      description: Returns the list of active quiz based on pagination
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: pageSize
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCompetitionWithResourceList'
+          description: ''
+    post:
+      operationId: quiz_competitions_create
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompetitionWithResource'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompetitionWithResource'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionWithResource'
+        required: true
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionWithResource'
+          description: ''
+  /quiz/competitions/{competition_pk}/winners/:
+    get:
+      operationId: quiz_competitions_winners_list
+      description: returns list of competition winner base on competition ID as parameter
+      parameters:
+      - in: path
+        name: competitionPk
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserCompetitionWinner'
+          description: ''
+  /quiz/competitions/{id}/:
+    get:
+      operationId: quiz_competitions_retrieve
+      description: returns the related quiz base on the ID as parameter
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /quiz/competitions/{id}/referral-code/{referral_code}/:
+    get:
+      operationId: quiz_competitions_referral_code_retrieve
+      description: check if a referral code is correct or not
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: referralCode
+        schema:
+          type: string
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+          description: The code was ok
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+          description: The code was not ok
+  /quiz/competitions/enroll/:
+    get:
+      operationId: quiz_competitions_enroll_list
+      description: register on a competition
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserCompetition'
+          description: ''
+    post:
+      operationId: quiz_competitions_enroll_create
+      description: register on a competition
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCompetition'
+          description: ''
+  /quiz/competitions/enroll/{id}/:
+    get:
+      operationId: quiz_competitions_enroll_retrieve
+      description: register on a competition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user competition.
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCompetition'
+          description: ''
+    put:
+      operationId: quiz_competitions_enroll_update
+      description: register on a competition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user competition.
+        required: true
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCompetition'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCompetition'
+          description: ''
+    patch:
+      operationId: quiz_competitions_enroll_partial_update
+      description: register on a competition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user competition.
+        required: true
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserCompetition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserCompetition'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserCompetition'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCompetition'
+          description: ''
+    delete:
+      operationId: quiz_competitions_enroll_destroy
+      description: register on a competition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user competition.
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /quiz/competitions/latest:
+    get:
+      operationId: quiz_competitions_latest_retrieve
+      description: return the latest competition that is going to execute
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionWithResource'
+          description: ''
+  /quiz/competitions/submit-answer/:
+    get:
+      operationId: quiz_competitions_submit_answer_list
+      description: deprecated, returns the submitted answers of questions
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserAnswer'
+          description: ''
+    post:
+      operationId: quiz_competitions_submit_answer_create
+      description: deprecated, returns the submitted answers of questions
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserAnswer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserAnswer'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAnswer'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAnswer'
+          description: ''
+  /quiz/dashboard/competitions/:
+    get:
+      operationId: quiz_dashboard_competitions_list
+      description: user's registration of competitions
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompetitionCreate'
+          description: ''
+    post:
+      operationId: quiz_dashboard_competitions_create
+      description: user's registration of competitions
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionCreate'
+          description: ''
+  /quiz/dashboard/competitions/{id}/:
+    get:
+      operationId: quiz_dashboard_competitions_retrieve
+      description: user's registration of competitions
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionCreate'
+          description: ''
+    put:
+      operationId: quiz_dashboard_competitions_update
+      description: user's registration of competitions
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompetitionCreate'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionCreate'
+          description: ''
+    patch:
+      operationId: quiz_dashboard_competitions_partial_update
+      description: user's registration of competitions
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - quiz
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCompetitionCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCompetitionCreate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCompetitionCreate'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionCreate'
+          description: ''
+    delete:
+      operationId: quiz_dashboard_competitions_destroy
+      description: user's registration of competitions
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /quiz/hints/:
+    get:
+      operationId: quiz_hints_list
+      description: show the active quiz hints
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hint'
+          description: ''
+  /quiz/questions/{id}/:
+    get:
+      operationId: quiz_questions_retrieve
+      description: deprecated, returns a questions of the competition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+          description: ''
+  /quiz/resources/:
+    get:
+      operationId: quiz_resources_list
+      description: returns the active resources of competitions
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResourceWithCompetitionSerialzier'
+          description: ''
+  /quiz/sandbox/{competition_id}/reset/:
+    get:
+      operationId: quiz_sandbox_reset_retrieve
+      description: |-
+        An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
+        and delete related UserCompetition and UserAnswer data.
+      parameters:
+      - in: path
+        name: competitionId
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: quiz_sandbox_reset_create
+      description: |-
+        An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
+        and delete related UserCompetition and UserAnswer data.
+      parameters:
+      - in: path
+        name: competitionId
+        schema:
+          type: integer
+        required: true
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /quiz/user-hints/:
+    get:
+      operationId: quiz_user_hints_list
+      description: returns user's available hints
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HintAchivement'
+          description: ''
+  /quiz/user-stats/:
+    get:
+      operationId: quiz_user_stats_list
+      description: returns user's profile to check user's stat
+      tags:
+      - quiz
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserStats'
+          description: ''
+  /stats/total/:
+    get:
+      operationId: stats_total_retrieve
+      description: See the general stats of activity in the app
+      tags:
+      - stats
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  all_users_count:
+                    type: integer
+                  competitions_count:
+                    type: integer
+                  user_enrollments_count:
+                    type: intger
+                  total_prize_amount:
+                    type: integer
+          description: ''
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        address:
+          type: string
+          maxLength: 42
+      required:
+      - address
+    ChoiceCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+          maxLength: 255
+        isCorrect:
+          type: boolean
+        isHintedChoice:
+          type: boolean
+      required:
+      - id
+      - text
+    Competition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmallQuestion'
+          readOnly: true
+        sponsors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sponsor'
+          readOnly: true
+        participantsCount:
+          type: integer
+          readOnly: true
+        builtInHints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionHint'
+          readOnly: true
+        isFinished:
+          type: boolean
+        isVip:
+          type: boolean
+        allowedHintTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hint'
+          readOnly: true
+        formattedPrize:
+          oneOf:
+          - type: integer
+          - type: number
+            format: double
+          - type: number
+            format: double
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        startAt:
+          type: string
+          format: date-time
+          nullable: true
+        prizeAmount:
+          type: string
+          nullable: true
+        chainId:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        language:
+          type: string
+          maxLength: 10
+        tokenDecimals:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        token:
+          type: string
+          nullable: true
+          maxLength: 100
+        tokenAddress:
+          type: string
+          nullable: true
+          maxLength: 255
+        discordUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        twitterUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        emailUrl:
+          type: string
+          format: email
+          maxLength: 255
+        telegramUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        tokenImage:
+          type: string
+          format: uri
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        shuffleAnswers:
+          type: boolean
+        splitPrize:
+          type: boolean
+        maxParticipants:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        isWinnersAnnounced:
+          type: boolean
+        constraintParams:
+          type: string
+          nullable: true
+        reversedConstraints:
+          type: string
+          nullable: true
+        referralCode:
+          type: string
+          nullable: true
+          maxLength: 255
+        txHash:
+          type: string
+          nullable: true
+          maxLength: 1000
+        isDemo:
+          type: boolean
+        isActive:
+          type: boolean
+        isTestnet:
+          type: boolean
+        lives:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questionTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questionHintTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        restTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        announceWinnersApiUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        apiResponse:
+          type: string
+          nullable: true
+        apiErrorResponse:
+          type: string
+          nullable: true
+        userProfile:
+          type: integer
+        constraints:
+          type: array
+          items:
+            type: integer
+      required:
+      - allowedHintTypes
+      - builtInHints
+      - createdAt
+      - emailUrl
+      - formattedPrize
+      - id
+      - isFinished
+      - isVip
+      - participantsCount
+      - questions
+      - sponsors
+      - title
+    CompetitionCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+          nullable: true
+        startAt:
+          type: string
+          format: date-time
+          nullable: true
+        prizeAmount:
+          type: string
+          nullable: true
+        chainId:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        token:
+          type: string
+          nullable: true
+          maxLength: 100
+        tokenDecimals:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        tokenAddress:
+          type: string
+          nullable: true
+          maxLength: 255
+        emailUrl:
+          type: string
+          format: email
+          maxLength: 255
+        telegramUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionCreate'
+        builtinHints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionHintCreate'
+          writeOnly: true
+        allowedHintTypes:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+      required:
+      - allowedHintTypes
+      - builtinHints
+      - emailUrl
+      - id
+      - questions
+      - title
+    CompetitionHint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        hint:
+          $ref: '#/components/schemas/Hint'
+        count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - hint
+      - id
+    CompetitionHintCreate:
+      type: object
+      properties:
+        count:
+          type: integer
+        hint:
+          type: integer
+          writeOnly: true
+      required:
+      - count
+      - hint
+    CompetitionWithResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmallQuestion'
+          readOnly: true
+        sponsors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sponsor'
+          readOnly: true
+        participantsCount:
+          type: integer
+          readOnly: true
+        builtInHints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionHint'
+          readOnly: true
+        isFinished:
+          type: boolean
+        isVip:
+          type: boolean
+        allowedHintTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hint'
+          readOnly: true
+        formattedPrize:
+          oneOf:
+          - type: integer
+          - type: number
+            format: double
+          - type: number
+            format: double
+          readOnly: true
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        title:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        startAt:
+          type: string
+          format: date-time
+          nullable: true
+        prizeAmount:
+          type: string
+          nullable: true
+        chainId:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        language:
+          type: string
+          maxLength: 10
+        tokenDecimals:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        token:
+          type: string
+          nullable: true
+          maxLength: 100
+        tokenAddress:
+          type: string
+          nullable: true
+          maxLength: 255
+        discordUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        twitterUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        emailUrl:
+          type: string
+          format: email
+          maxLength: 255
+        telegramUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        tokenImage:
+          type: string
+          format: uri
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        shuffleAnswers:
+          type: boolean
+        splitPrize:
+          type: boolean
+        maxParticipants:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        isWinnersAnnounced:
+          type: boolean
+        constraintParams:
+          type: string
+          nullable: true
+        reversedConstraints:
+          type: string
+          nullable: true
+        referralCode:
+          type: string
+          nullable: true
+          maxLength: 255
+        txHash:
+          type: string
+          nullable: true
+          maxLength: 1000
+        isDemo:
+          type: boolean
+        isActive:
+          type: boolean
+        isTestnet:
+          type: boolean
+        lives:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questionTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questionHintTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        restTimeSeconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        announceWinnersApiUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        apiResponse:
+          type: string
+          nullable: true
+        apiErrorResponse:
+          type: string
+          nullable: true
+        userProfile:
+          type: integer
+        constraints:
+          type: array
+          items:
+            type: integer
+      required:
+      - allowedHintTypes
+      - builtInHints
+      - createdAt
+      - emailUrl
+      - formattedPrize
+      - id
+      - isFinished
+      - isVip
+      - participantsCount
+      - questions
+      - resources
+      - sponsors
+      - title
+    ENSConnection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isConnected:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        userWalletAddress:
+          type: string
+          maxLength: 255
+        userProfile:
+          type: integer
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - isConnected
+      - userProfile
+      - userWalletAddress
+    FarcasterConnection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isConnected:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        userWalletAddress:
+          type: string
+          maxLength: 255
+        userProfile:
+          type: integer
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - isConnected
+      - userProfile
+      - userWalletAddress
+    GitcoinPassportConnection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isConnected:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        userWalletAddress:
+          type: string
+          maxLength: 255
+        userProfile:
+          type: integer
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - isConnected
+      - userProfile
+      - userWalletAddress
+    Hint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        hint:
+          type: string
+          readOnly: true
+        hintType:
+          $ref: '#/components/schemas/HintTypeEnum'
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        isActive:
+          type: boolean
+        icon:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - description
+      - hint
+      - hintType
+      - id
+      - title
+    HintAchivement:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        isUsed:
+          type: boolean
+        hint:
+          type: integer
+        usedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - createdAt
+      - hint
+      - pk
+    HintTypeEnum:
+      enum:
+      - stats
+      - fifty
+      - time
+      type: string
+      description: |-
+        * `stats` - Stats
+        * `fifty` - Fifty
+        * `time` - Time
+    LensConnection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        isConnected:
+          type: string
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        userWalletAddress:
+          type: string
+          maxLength: 255
+        userProfile:
+          type: integer
+          readOnly: true
+      required:
+      - createdAt
+      - id
+      - isConnected
+      - userProfile
+      - userWalletAddress
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+      - message
+    PaginatedCompetitionWithResourceList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionWithResource'
+    PatchedCompetitionCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+          nullable: true
+        startAt:
+          type: string
+          format: date-time
+          nullable: true
+        prizeAmount:
+          type: string
+          nullable: true
+        chainId:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        token:
+          type: string
+          nullable: true
+          maxLength: 100
+        tokenDecimals:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        tokenAddress:
+          type: string
+          nullable: true
+          maxLength: 255
+        emailUrl:
+          type: string
+          format: email
+          maxLength: 255
+        telegramUrl:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 255
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionCreate'
+        builtinHints:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompetitionHintCreate'
+          writeOnly: true
+        allowedHintTypes:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+    PatchedUserCompetition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        registeredHints:
+          type: string
+          readOnly: true
+        userId:
+          type: integer
+          readOnly: true
+        userHints:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+        referralCode:
+          type: string
+          writeOnly: true
+        isWinner:
+          type: boolean
+          readOnly: true
+        amountWon:
+          type: string
+          readOnly: true
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        txHash:
+          type: string
+          readOnly: true
+          nullable: true
+        isClaimTriggered:
+          type: boolean
+        lives:
+          type: integer
+          readOnly: true
+        userProfile:
+          type: integer
+          readOnly: true
+        competition:
+          type: integer
+    PatchedUserProfile:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        username:
+          type: string
+          nullable: true
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        image:
+          type: string
+          format: uri
+          nullable: true
+        wallets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wallet'
+          readOnly: true
+        firstName:
+          type: string
+          nullable: true
+          maxLength: 255
+        lastName:
+          type: string
+          nullable: true
+          maxLength: 255
+        neuron:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+    ProfileUserCompetition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        competition:
+          $ref: '#/components/schemas/Competition'
+        isWinner:
+          type: boolean
+          readOnly: true
+        amountWon:
+          type: string
+          readOnly: true
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        txHash:
+          type: string
+          readOnly: true
+          nullable: true
+        isClaimTriggered:
+          type: boolean
+        lives:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        userProfile:
+          type: integer
+          readOnly: true
+        registeredHints:
+          type: array
+          items:
+            type: integer
+          readOnly: true
+      required:
+      - amountWon
+      - competition
+      - id
+      - isWinner
+      - registeredHints
+      - txHash
+      - userProfile
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        choices:
+          type: string
+          readOnly: true
+        isEligible:
+          type: string
+          readOnly: true
+        number:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+        text:
+          type: string
+        creator:
+          type: string
+          maxLength: 255
+        competition:
+          type: integer
+      required:
+      - choices
+      - competition
+      - id
+      - isEligible
+      - number
+      - text
+    QuestionCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceCreate'
+        number:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+        text:
+          type: string
+        creator:
+          type: string
+          maxLength: 255
+      required:
+      - choices
+      - id
+      - number
+      - text
+    Resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        link:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 1000
+        linkText:
+          type: string
+          nullable: true
+          maxLength: 300
+        image:
+          type: string
+          format: uri
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        isActive:
+          type: boolean
+        competition:
+          type: integer
+          nullable: true
+      required:
+      - content
+      - createdAt
+      - id
+      - title
+    ResourceWithCompetitionSerialzier:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        competition:
+          $ref: '#/components/schemas/Competition'
+        title:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        link:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 1000
+        linkText:
+          type: string
+          nullable: true
+          maxLength: 300
+        image:
+          type: string
+          format: uri
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        isActive:
+          type: boolean
+      required:
+      - competition
+      - content
+      - createdAt
+      - id
+      - title
+    SmallQuestion:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        number:
+          type: integer
+          maximum: 2147483647
+          minimum: 1
+      required:
+      - number
+      - pk
+    Sponsor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        link:
+          type: string
+          format: uri
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - id
+      - link
+      - name
+    UserAnswer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        selectedChoice:
+          type: integer
+        userCompetition:
+          type: integer
+        question:
+          type: integer
+      required:
+      - id
+      - question
+      - selectedChoice
+      - userCompetition
+    UserCompetition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        registeredHints:
+          type: string
+          readOnly: true
+        userId:
+          type: integer
+          readOnly: true
+        userHints:
+          type: array
+          items:
+            type: integer
+            writeOnly: true
+          writeOnly: true
+        referralCode:
+          type: string
+          writeOnly: true
+        isWinner:
+          type: boolean
+          readOnly: true
+        amountWon:
+          type: string
+          readOnly: true
+        hintCount:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        txHash:
+          type: string
+          readOnly: true
+          nullable: true
+        isClaimTriggered:
+          type: boolean
+        lives:
+          type: integer
+          readOnly: true
+        userProfile:
+          type: integer
+          readOnly: true
+        competition:
+          type: integer
+      required:
+      - amountWon
+      - competition
+      - id
+      - isWinner
+      - lives
+      - registeredHints
+      - txHash
+      - userHints
+      - userId
+      - userProfile
+    UserCompetitionWinner:
+      type: object
+      properties:
+        userProfile:
+          $ref: '#/components/schemas/UserProfile'
+        amountWon:
+          type: string
+        txHash:
+          type: string
+          nullable: true
+          maxLength: 1000
+      required:
+      - userProfile
+    UserProfile:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        username:
+          type: string
+          nullable: true
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        image:
+          type: string
+          format: uri
+          nullable: true
+        wallets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wallet'
+          readOnly: true
+        firstName:
+          type: string
+          nullable: true
+          maxLength: 255
+        lastName:
+          type: string
+          nullable: true
+          maxLength: 255
+        neuron:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - pk
+      - wallets
+    UserStats:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        rankInfo:
+          type: string
+          readOnly: true
+        competitionStats:
+          type: string
+          readOnly: true
+      required:
+      - competitionStats
+      - id
+      - rankInfo
+    UsernameRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 24
+      required:
+      - username
+    Wallet:
+      type: object
+      properties:
+        pk:
+          type: integer
+          readOnly: true
+          title: ID
+        walletAddress:
+          type: string
+          maxLength: 512
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - createdAt
+      - pk
+      - walletAddress
+    WalletAddress:
+      type: object
+      properties:
+        address:
+          type: string
+          maxLength: 255
+      required:
+      - address
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
