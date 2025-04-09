@@ -1,6 +1,6 @@
 {
   "name": "wits-client",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "A client for using wits.win apis",
   "license": "MIT",
   "homepage": "https://wits.win",
@@ -19,6 +19,38 @@
     "dist",
     "src"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/wits-client.mjs",
+      "require": "./dist/cjs/wits-client.cjs",
+      "types": "./dist/wits-client.d.ts"
+    },
+    "./api-client": {
+      "import": "./dist/api-client.mjs",
+      "require": "./dist/cjs/api-client.cjs",
+      "types": "./dist/api-client.d.ts"
+    },
+    "./api-dashboard": {
+      "import": "./dist/api-dashboard.mjs",
+      "require": "./dist/cjs/api-dashboard.cjs",
+      "types": "./dist/api-dashboard.d.ts"
+    },
+    "./config": {
+      "import": "./dist/config.mjs",
+      "require": "./dist/cjs/config.cjs",
+      "types": "./dist/config.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/cjs/utils.cjs",
+      "types": "./dist/utils.d.ts"
+    },
+    "./ws": {
+      "import": "./dist/ws.mjs",
+      "require": "./dist/cjs/ws.cjs",
+      "types": "./dist/ws.d.ts"
+    }
+  },
   "scripts": {
     "clean": "rimraf dist",
     "format": "prettier --write \"{src,test}/**/*.{js,ts}\" \"**/*.md\"",
@@ -33,7 +65,9 @@
     "examples:lint": "eslint --ext js,ts examples",
     "tsc": "tsc"
   },
-  "module": "src/index.ts",
+  "main": "./dist/cjs/wits-client.cjs",
+  "module": "./dist/wits-client.mjs",
+  "types": "./dist/wits-client.d.ts",
   "type": "module",
   "devDependencies": {
     "@babel/core": "^7.24.3",
@@ -46,20 +80,14 @@
     "cross-env": "^7.0.3",
     "esbuild-extra": "^0.3.1",
     "eslint": "^8.57.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "glob": "^10.3.10",
-    "netlify-plugin-cache": "^1.0.3",
     "openapi-fetch": "^0.13.5",
     "openapi-typescript": "^7.6.1",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "rxjs": "^7.8.1",
     "tsup": "8.0.2",
-    "vitest": "^2.0.5"
+    "vitest": "^2.0.5",
+    "ws": "^8.18.1"
   },
   "peerDependencies": {
     "typescript": "^5"

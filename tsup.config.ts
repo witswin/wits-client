@@ -1,7 +1,5 @@
-import type { Options } from "tsup"
-import { defineConfig } from "tsup"
-
-const tsconfig = "tsconfig.json" satisfies Options["tsconfig"]
+import type { Options } from 'tsup'
+import { defineConfig } from 'tsup'
 
 // const mangleErrorsTransform: Plugin = {
 //   name: mangleErrorsPlugin.name,
@@ -41,50 +39,50 @@ const tsconfig = "tsconfig.json" satisfies Options["tsconfig"]
 export default defineConfig((options): Options[] => {
   const commonOptions: Options = {
     entry: {
-      "wits-client": "src/index.ts",
+      'wits-client': 'src/index.ts',
+      'wits-client.api-client': 'src/api-client.d.ts',
+      'wits-client.api-dashboard': 'src/api-dashboard.d.ts',
+      'wits-client.config': 'src/config.ts',
+      'wits-client.ws': 'src/ws/index.ts'
     },
-    // esbuildPlugins: [mangleErrorsTransform],
     sourcemap: true,
-    tsconfig,
-    ...options,
+    tsconfig: './tsconfig.json',
+    ...options
   }
 
   return [
-    // Standard ESM, embedded `process.env.NODE_ENV` checks
     {
       ...commonOptions,
-      format: ["esm"],
-      outExtension: () => ({ js: ".mjs" }), // Add dts: '.d.ts' when egoist/tsup#1053 lands
+      format: ['esm'],
+      outExtension: () => ({ js: '.mjs' }),
       dts: true,
-      clean: true,
+      clean: true
     },
-    // Support Webpack 4 by pointing `"module"` to a file with a `.js` extension
     {
       ...commonOptions,
-      format: ["esm"],
-      target: ["es2017"],
+      format: ['esm'],
+      target: ['es2017'],
       dts: false,
-      outExtension: () => ({ js: ".js" }),
-      entry: { "wits-client.legacy-esm": "src/index.ts" },
+      outExtension: () => ({ js: '.js' }),
+      entry: { 'wits-client.legacy-esm': 'src/index.ts' }
     },
-    // Browser-ready ESM, production + minified
     {
       ...commonOptions,
       entry: {
-        "wits-client.browser": "src/index.ts",
+        'wits-client.browser': 'src/index.ts'
       },
       define: {
-        "process.env.NODE_ENV": JSON.stringify("production"),
+        'process.env.NODE_ENV': JSON.stringify('production')
       },
-      format: ["esm"],
-      outExtension: () => ({ js: ".mjs" }),
-      minify: true,
+      format: ['esm'],
+      outExtension: () => ({ js: '.mjs' }),
+      minify: true
     },
     {
       ...commonOptions,
-      format: ["cjs"],
-      outDir: "./dist/cjs/",
-      outExtension: () => ({ js: ".cjs" }),
-    },
+      format: ['cjs'],
+      outDir: './dist/cjs/',
+      outExtension: () => ({ js: '.cjs' })
+    }
   ]
 })
