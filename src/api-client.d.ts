@@ -4,3024 +4,3024 @@
  */
 
 export interface paths {
-    "/auth/add-wallet-unsafe/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description add a wallet without sign confirmation to an account */
-        post: operations["auth_add_wallet_unsafe_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/add-wallets/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description add wallet to profile with a signature to verify the ownership of the wallet */
-        post: operations["auth_add_wallets_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/change-wallet-unsafe/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Change a user's wallet without sign confirmation */
-        post: operations["auth_change_wallet_unsafe_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/change-wallets/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description change a connected wallet with a signature to verify the ownership of the wallet */
-        post: operations["auth_change_wallets_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/create-message/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Create a sample message to sign with a wallet for verifying the wallet owner */
-        post: operations["auth_create_message_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/discord/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Create an url for user to be redirected and connect thier discord profile */
-        get: operations["auth_discord_retrieve"];
-        put?: never;
-        post?: never;
-        /** @description Disconnect discord profile from the app */
-        delete: operations["auth_discord_destroy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/discord/callback/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description A callback url for discord OAuth2 to connect discord profile after discord login */
-        get: operations["auth_discord_callback_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/info/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["auth_info_retrieve"];
-        put: operations["auth_info_update"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch: operations["auth_info_partial_update"];
-        trace?: never;
-    };
-    "/auth/telegram/private/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** @description  Update telegram visibility to other users */
-        patch: operations["auth_telegram_private_partial_update"];
-        trace?: never;
-    };
-    "/auth/twitter/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description connect twitter integration to profile */
-        get: operations["auth_twitter_retrieve"];
-        put?: never;
-        post?: never;
-        /** @description deletes the user twitter connection */
-        delete: operations["auth_twitter_destroy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/twitter/callback/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description twitter callback url for verifying and connecting twitter integration */
-        get: operations["auth_twitter_callback_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/all-connections/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description send user's all connected integrations */
-        get: operations["auth_user_all_connections_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/check-username/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Sample */
-        post: operations["auth_user_check_username_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/connect/brightid/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Deprecated */
-        post: operations["auth_user_connect_brightid_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/connect/ens/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description allows users to connect their wallet ENS integration and save the username */
-        post: operations["auth_user_connect_ens_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/connect/farcaster/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description connects user's farcaster account */
-        post: operations["auth_user_connect_farcaster_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/connect/gitcoin-passport/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description connects gitcoin passport integration */
-        post: operations["auth_user_connect_gitcoin_passport_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/connect/lens/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description connects Lens integration */
-        post: operations["auth_user_connect_lens_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/disconnect/ens/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** @description deletes the user ENS integration */
-        delete: operations["auth_user_disconnect_ens_destroy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/disconnect/farcaster/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** @description deletes user's farcaster connection */
-        delete: operations["auth_user_disconnect_farcaster_destroy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/disconnect/lens/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description  Disconnects user's lens integration */
-        post: operations["auth_user_disconnect_lens_create"];
-        /** @description  Disconnects user's lens integration */
-        delete: operations["auth_user_disconnect_lens_destroy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/set-username/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["auth_user_set_username_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/user/sponsor/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description create a verification link through brightid authentication system for user to login and connect their brightid to the app */
-        post: operations["auth_user_sponsor_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/users/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["auth_users_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/users/{id}/connections/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["auth_users_connections_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/users/{id}/stats/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns authenticated user stats */
-        get: operations["auth_users_stats_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/verify-wallet/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description authenticate with a wallet sign to verify the owner of the wallet and login or register */
-        post: operations["auth_verify_wallet_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/{user_id}/competitions/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description See a user's registered competitions */
-        get: operations["quiz_competitions_list_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/claim-prize/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns all of users no-claimed wins */
-        get: operations["quiz_claim_prize_list"];
-        put?: never;
-        /** @description create a new claim request from user */
-        post: operations["quiz_claim_prize_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competition/{id}/qr-code/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Generates a QR code to enroll in quiz */
-        get: operations["quiz_competition_qr_code_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Returns the list of active quiz based on pagination */
-        get: operations["quiz_competitions_list"];
-        put?: never;
-        post: operations["quiz_competitions_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/{competition_pk}/winners/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns list of competition winner base on competition ID as parameter */
-        get: operations["quiz_competitions_winners_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns the related quiz base on the ID as parameter */
-        get: operations["quiz_competitions_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/{id}/referral-code/{referral_code}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description check if a referral code is correct or not */
-        get: operations["quiz_competitions_referral_code_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/enroll/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description register on a competition */
-        get: operations["quiz_competitions_enroll_list"];
-        put?: never;
-        /** @description register on a competition */
-        post: operations["quiz_competitions_enroll_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/enroll/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description register on a competition */
-        get: operations["quiz_competitions_enroll_retrieve"];
-        /** @description register on a competition */
-        put: operations["quiz_competitions_enroll_update"];
-        post?: never;
-        /** @description register on a competition */
-        delete: operations["quiz_competitions_enroll_destroy"];
-        options?: never;
-        head?: never;
-        /** @description register on a competition */
-        patch: operations["quiz_competitions_enroll_partial_update"];
-        trace?: never;
-    };
-    "/quiz/competitions/latest": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description return the latest competition that is going to execute */
-        get: operations["quiz_competitions_latest_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/competitions/submit-answer/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description deprecated, returns the submitted answers of questions */
-        get: operations["quiz_competitions_submit_answer_list"];
-        put?: never;
-        /** @description deprecated, returns the submitted answers of questions */
-        post: operations["quiz_competitions_submit_answer_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/dashboard/competitions/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description user's registration of competitions */
-        get: operations["quiz_dashboard_competitions_list"];
-        put?: never;
-        /** @description user's registration of competitions */
-        post: operations["quiz_dashboard_competitions_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/dashboard/competitions/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description user's registration of competitions */
-        get: operations["quiz_dashboard_competitions_retrieve"];
-        /** @description user's registration of competitions */
-        put: operations["quiz_dashboard_competitions_update"];
-        post?: never;
-        /** @description user's registration of competitions */
-        delete: operations["quiz_dashboard_competitions_destroy"];
-        options?: never;
-        head?: never;
-        /** @description user's registration of competitions */
-        patch: operations["quiz_dashboard_competitions_partial_update"];
-        trace?: never;
-    };
-    "/quiz/hints/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description show the active quiz hints */
-        get: operations["quiz_hints_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/questions/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description deprecated, returns a questions of the competition */
-        get: operations["quiz_questions_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/resources/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns the active resources of competitions */
-        get: operations["quiz_resources_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/sandbox/{competition_id}/reset/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
-         *     and delete related UserCompetition and UserAnswer data. */
-        get: operations["quiz_sandbox_reset_retrieve"];
-        put?: never;
-        /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
-         *     and delete related UserCompetition and UserAnswer data. */
-        post: operations["quiz_sandbox_reset_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/user-hints/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns user's available hints */
-        get: operations["quiz_user_hints_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/quiz/user-stats/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description returns user's profile to check user's stat */
-        get: operations["quiz_user_stats_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/stats/total/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description See the general stats of activity in the app */
-        get: operations["stats_total_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
+  '/auth/add-wallet-unsafe/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description add a wallet without sign confirmation to an account */
+    post: operations['auth_add_wallet_unsafe_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/add-wallets/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description add wallet to profile with a signature to verify the ownership of the wallet */
+    post: operations['auth_add_wallets_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/change-wallet-unsafe/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Change a user's wallet without sign confirmation */
+    post: operations['auth_change_wallet_unsafe_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/change-wallets/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description change a connected wallet with a signature to verify the ownership of the wallet */
+    post: operations['auth_change_wallets_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/create-message/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Create a sample message to sign with a wallet for verifying the wallet owner */
+    post: operations['auth_create_message_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/discord/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description Create an url for user to be redirected and connect thier discord profile */
+    get: operations['auth_discord_retrieve']
+    put?: never
+    post?: never
+    /** @description Disconnect discord profile from the app */
+    delete: operations['auth_discord_destroy']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/discord/callback/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description A callback url for discord OAuth2 to connect discord profile after discord login */
+    get: operations['auth_discord_callback_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/info/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get: operations['auth_info_retrieve']
+    put: operations['auth_info_update']
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch: operations['auth_info_partial_update']
+    trace?: never
+  }
+  '/auth/telegram/private/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    /** @description  Update telegram visibility to other users */
+    patch: operations['auth_telegram_private_partial_update']
+    trace?: never
+  }
+  '/auth/twitter/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description connect twitter integration to profile */
+    get: operations['auth_twitter_retrieve']
+    put?: never
+    post?: never
+    /** @description deletes the user twitter connection */
+    delete: operations['auth_twitter_destroy']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/twitter/callback/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description twitter callback url for verifying and connecting twitter integration */
+    get: operations['auth_twitter_callback_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/all-connections/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description send user's all connected integrations */
+    get: operations['auth_user_all_connections_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/check-username/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Sample */
+    post: operations['auth_user_check_username_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/connect/brightid/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description Deprecated */
+    post: operations['auth_user_connect_brightid_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/connect/ens/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description allows users to connect their wallet ENS integration and save the username */
+    post: operations['auth_user_connect_ens_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/connect/farcaster/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description connects user's farcaster account */
+    post: operations['auth_user_connect_farcaster_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/connect/gitcoin-passport/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description connects gitcoin passport integration */
+    post: operations['auth_user_connect_gitcoin_passport_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/connect/lens/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description connects Lens integration */
+    post: operations['auth_user_connect_lens_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/disconnect/ens/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    /** @description deletes the user ENS integration */
+    delete: operations['auth_user_disconnect_ens_destroy']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/disconnect/farcaster/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    /** @description deletes user's farcaster connection */
+    delete: operations['auth_user_disconnect_farcaster_destroy']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/disconnect/lens/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description  Disconnects user's lens integration */
+    post: operations['auth_user_disconnect_lens_create']
+    /** @description  Disconnects user's lens integration */
+    delete: operations['auth_user_disconnect_lens_destroy']
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/set-username/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post: operations['auth_user_set_username_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/user/sponsor/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description create a verification link through brightid authentication system for user to login and connect their brightid to the app */
+    post: operations['auth_user_sponsor_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/users/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get: operations['auth_users_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/users/{id}/connections/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get: operations['auth_users_connections_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/users/{id}/stats/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns authenticated user stats */
+    get: operations['auth_users_stats_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/verify-wallet/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description authenticate with a wallet sign to verify the owner of the wallet and login or register */
+    post: operations['auth_verify_wallet_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/{user_id}/competitions/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description See a user's registered competitions */
+    get: operations['quiz_competitions_list_2']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/claim-prize/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns all of users no-claimed wins */
+    get: operations['quiz_claim_prize_list']
+    put?: never
+    /** @description create a new claim request from user */
+    post: operations['quiz_claim_prize_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competition/{id}/qr-code/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description Generates a QR code to enroll in quiz */
+    get: operations['quiz_competition_qr_code_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description Returns the list of active quiz based on pagination */
+    get: operations['quiz_competitions_list']
+    put?: never
+    post: operations['quiz_competitions_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/{competition_pk}/winners/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns list of competition winner base on competition ID as parameter */
+    get: operations['quiz_competitions_winners_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns the related quiz base on the ID as parameter */
+    get: operations['quiz_competitions_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/{id}/referral-code/{referral_code}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description check if a referral code is correct or not */
+    get: operations['quiz_competitions_referral_code_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/enroll/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description register on a competition */
+    get: operations['quiz_competitions_enroll_list']
+    put?: never
+    /** @description register on a competition */
+    post: operations['quiz_competitions_enroll_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/enroll/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description register on a competition */
+    get: operations['quiz_competitions_enroll_retrieve']
+    /** @description register on a competition */
+    put: operations['quiz_competitions_enroll_update']
+    post?: never
+    /** @description register on a competition */
+    delete: operations['quiz_competitions_enroll_destroy']
+    options?: never
+    head?: never
+    /** @description register on a competition */
+    patch: operations['quiz_competitions_enroll_partial_update']
+    trace?: never
+  }
+  '/quiz/competitions/latest': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description return the latest competition that is going to execute */
+    get: operations['quiz_competitions_latest_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/competitions/submit-answer/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description deprecated, returns the submitted answers of questions */
+    get: operations['quiz_competitions_submit_answer_list']
+    put?: never
+    /** @description deprecated, returns the submitted answers of questions */
+    post: operations['quiz_competitions_submit_answer_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/dashboard/competitions/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description user's registration of competitions */
+    get: operations['quiz_dashboard_competitions_list']
+    put?: never
+    /** @description user's registration of competitions */
+    post: operations['quiz_dashboard_competitions_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/dashboard/competitions/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description user's registration of competitions */
+    get: operations['quiz_dashboard_competitions_retrieve']
+    /** @description user's registration of competitions */
+    put: operations['quiz_dashboard_competitions_update']
+    post?: never
+    /** @description user's registration of competitions */
+    delete: operations['quiz_dashboard_competitions_destroy']
+    options?: never
+    head?: never
+    /** @description user's registration of competitions */
+    patch: operations['quiz_dashboard_competitions_partial_update']
+    trace?: never
+  }
+  '/quiz/hints/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description show the active quiz hints */
+    get: operations['quiz_hints_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/questions/{id}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description deprecated, returns a questions of the competition */
+    get: operations['quiz_questions_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/resources/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns the active resources of competitions */
+    get: operations['quiz_resources_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/sandbox/{competition_id}/reset/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
+     *     and delete related UserCompetition and UserAnswer data. */
+    get: operations['quiz_sandbox_reset_retrieve']
+    put?: never
+    /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
+     *     and delete related UserCompetition and UserAnswer data. */
+    post: operations['quiz_sandbox_reset_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/user-hints/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns user's available hints */
+    get: operations['quiz_user_hints_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/quiz/user-stats/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description returns user's profile to check user's stat */
+    get: operations['quiz_user_stats_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/stats/total/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description See the general stats of activity in the app */
+    get: operations['stats_total_retrieve']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
-export type webhooks = Record<string, never>;
+export type webhooks = Record<string, never>
 export interface components {
-    schemas: {
-        Address: {
-            address: string;
-        };
-        ChoiceCreate: {
-            readonly id: number;
-            text: string;
-            isCorrect?: boolean;
-            isHintedChoice?: boolean;
-        };
-        Competition: {
-            readonly id: number;
-            readonly questions: components["schemas"]["SmallQuestion"][];
-            readonly sponsors: components["schemas"]["Sponsor"][];
-            readonly participantsCount: number;
-            readonly builtInHints: components["schemas"]["CompetitionHint"][];
-            isFinished: boolean;
-            isVip: boolean;
-            readonly allowedHintTypes: components["schemas"]["Hint"][];
-            readonly formattedPrize: number;
-            title: string;
-            details?: string | null;
-            /** Format: date-time */
-            readonly createdAt: string;
-            /** Format: date-time */
-            startAt?: string | null;
-            prizeAmount?: string | null;
-            chainId?: number | null;
-            language?: string;
-            tokenDecimals?: number | null;
-            token?: string | null;
-            tokenAddress?: string | null;
-            /** Format: uri */
-            discordUrl?: string | null;
-            /** Format: uri */
-            twitterUrl?: string | null;
-            /** Format: email */
-            emailUrl: string;
-            /** Format: uri */
-            telegramUrl?: string | null;
-            /** Format: uri */
-            tokenImage?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            shuffleAnswers?: boolean;
-            splitPrize?: boolean;
-            maxParticipants?: number;
-            isWinnersAnnounced?: boolean;
-            constraintParams?: string | null;
-            reversedConstraints?: string | null;
-            referralCode?: string | null;
-            txHash?: string | null;
-            isDemo?: boolean;
-            isActive?: boolean;
-            isTestnet?: boolean;
-            lives?: number;
-            hintCount?: number;
-            questionTimeSeconds?: number;
-            questionHintTimeSeconds?: number;
-            restTimeSeconds?: number;
-            /** Format: uri */
-            announceWinnersApiUrl?: string | null;
-            apiResponse?: string | null;
-            apiErrorResponse?: string | null;
-            userProfile?: number;
-            constraints?: number[];
-        };
-        CompetitionCreate: {
-            readonly id: number;
-            title: string;
-            details?: string | null;
-            /** Format: date-time */
-            startAt?: string | null;
-            prizeAmount?: string | null;
-            chainId?: number | null;
-            token?: string | null;
-            tokenDecimals?: number | null;
-            tokenAddress?: string | null;
-            /** Format: email */
-            emailUrl: string;
-            /** Format: uri */
-            telegramUrl?: string | null;
-            hintCount?: number;
-            questions: components["schemas"]["QuestionCreate"][];
-            builtinHints: components["schemas"]["CompetitionHintCreate"][];
-            allowedHintTypes: number[];
-        };
-        CompetitionHint: {
-            readonly id: number;
-            hint: components["schemas"]["Hint"];
-            count?: number;
-        };
-        CompetitionHintCreate: {
-            count: number;
-            hint: number;
-        };
-        CompetitionWithResource: {
-            readonly id: number;
-            readonly questions: components["schemas"]["SmallQuestion"][];
-            readonly sponsors: components["schemas"]["Sponsor"][];
-            readonly participantsCount: number;
-            readonly builtInHints: components["schemas"]["CompetitionHint"][];
-            isFinished: boolean;
-            isVip: boolean;
-            readonly allowedHintTypes: components["schemas"]["Hint"][];
-            readonly formattedPrize: number;
-            resources: components["schemas"]["Resource"][];
-            title: string;
-            details?: string | null;
-            /** Format: date-time */
-            readonly createdAt: string;
-            /** Format: date-time */
-            startAt?: string | null;
-            prizeAmount?: string | null;
-            chainId?: number | null;
-            language?: string;
-            tokenDecimals?: number | null;
-            token?: string | null;
-            tokenAddress?: string | null;
-            /** Format: uri */
-            discordUrl?: string | null;
-            /** Format: uri */
-            twitterUrl?: string | null;
-            /** Format: email */
-            emailUrl: string;
-            /** Format: uri */
-            telegramUrl?: string | null;
-            /** Format: uri */
-            tokenImage?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            shuffleAnswers?: boolean;
-            splitPrize?: boolean;
-            maxParticipants?: number;
-            isWinnersAnnounced?: boolean;
-            constraintParams?: string | null;
-            reversedConstraints?: string | null;
-            referralCode?: string | null;
-            txHash?: string | null;
-            isDemo?: boolean;
-            isActive?: boolean;
-            isTestnet?: boolean;
-            lives?: number;
-            hintCount?: number;
-            questionTimeSeconds?: number;
-            questionHintTimeSeconds?: number;
-            restTimeSeconds?: number;
-            /** Format: uri */
-            announceWinnersApiUrl?: string | null;
-            apiResponse?: string | null;
-            apiErrorResponse?: string | null;
-            userProfile?: number;
-            constraints?: number[];
-        };
-        ENSConnection: {
-            readonly id: number;
-            readonly isConnected: string;
-            /** Format: date-time */
-            readonly createdAt: string | null;
-            userWalletAddress: string;
-            readonly userProfile: number;
-        };
-        FarcasterConnection: {
-            readonly id: number;
-            readonly isConnected: string;
-            /** Format: date-time */
-            readonly createdAt: string | null;
-            userWalletAddress: string;
-            readonly userProfile: number;
-        };
-        GitcoinPassportConnection: {
-            readonly id: number;
-            readonly isConnected: string;
-            /** Format: date-time */
-            readonly createdAt: string | null;
-            userWalletAddress: string;
-            readonly userProfile: number;
-        };
-        Hint: {
-            readonly id: number;
-            readonly hint: string;
-            hintType: components["schemas"]["HintTypeEnum"];
-            title: string;
-            description: string;
-            isActive?: boolean;
-            /** Format: uri */
-            icon?: string | null;
-        };
-        HintAchivement: {
-            /** ID */
-            readonly pk: number;
-            isUsed?: boolean;
-            hint: number;
-            /** Format: date-time */
-            usedAt?: string | null;
-            /** Format: date-time */
-            readonly createdAt: string;
-        };
-        /**
-         * @description * `stats` - Stats
-         *     * `fifty` - Fifty
-         *     * `time` - Time
-         * @enum {string}
-         */
-        HintTypeEnum: "stats" | "fifty" | "time";
-        LensConnection: {
-            readonly id: number;
-            readonly isConnected: string;
-            /** Format: date-time */
-            readonly createdAt: string | null;
-            userWalletAddress: string;
-            readonly userProfile: number;
-        };
-        MessageResponse: {
-            message: string;
-        };
-        PaginatedCompetitionWithResourceList: {
-            /** @example 123 */
-            count: number;
-            /**
-             * Format: uri
-             * @example http://api.example.org/accounts/?page=4
-             */
-            next?: string | null;
-            /**
-             * Format: uri
-             * @example http://api.example.org/accounts/?page=2
-             */
-            previous?: string | null;
-            results: components["schemas"]["CompetitionWithResource"][];
-        };
-        PatchedCompetitionCreate: {
-            readonly id?: number;
-            title?: string;
-            details?: string | null;
-            /** Format: date-time */
-            startAt?: string | null;
-            prizeAmount?: string | null;
-            chainId?: number | null;
-            token?: string | null;
-            tokenDecimals?: number | null;
-            tokenAddress?: string | null;
-            /** Format: email */
-            emailUrl?: string;
-            /** Format: uri */
-            telegramUrl?: string | null;
-            hintCount?: number;
-            questions?: components["schemas"]["QuestionCreate"][];
-            builtinHints?: components["schemas"]["CompetitionHintCreate"][];
-            allowedHintTypes?: number[];
-        };
-        PatchedUserCompetition: {
-            readonly id?: number;
-            readonly registeredHints?: string;
-            readonly userId?: number;
-            userHints?: number[];
-            referralCode?: string;
-            readonly isWinner?: boolean;
-            readonly amountWon?: string;
-            hintCount?: number;
-            readonly txHash?: string | null;
-            isClaimTriggered?: boolean;
-            readonly lives?: number;
-            readonly userProfile?: number;
-            competition?: number;
-        };
-        PatchedUserProfile: {
-            /** ID */
-            readonly pk?: number;
-            username?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            readonly wallets?: components["schemas"]["Wallet"][];
-            firstName?: string | null;
-            lastName?: string | null;
-            neuron?: number;
-        };
-        ProfileUserCompetition: {
-            readonly id: number;
-            competition: components["schemas"]["Competition"];
-            readonly isWinner: boolean;
-            readonly amountWon: string;
-            hintCount?: number;
-            readonly txHash: string | null;
-            isClaimTriggered?: boolean;
-            lives?: number;
-            readonly userProfile: number;
-            readonly registeredHints: number[];
-        };
-        Question: {
-            readonly id: number;
-            readonly choices: string;
-            readonly isEligible: string;
-            number: number;
-            text: string;
-            creator?: string;
-            competition: number;
-        };
-        QuestionCreate: {
-            readonly id: number;
-            choices: components["schemas"]["ChoiceCreate"][];
-            number: number;
-            text: string;
-            creator?: string;
-        };
-        Resource: {
-            readonly id: number;
-            title: string;
-            content: string;
-            /** Format: uri */
-            link?: string | null;
-            linkText?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            /** Format: date-time */
-            readonly createdAt: string;
-            isActive?: boolean;
-            competition?: number | null;
-        };
-        ResourceWithCompetitionSerialzier: {
-            readonly id: number;
-            competition: components["schemas"]["Competition"];
-            title: string;
-            content: string;
-            /** Format: uri */
-            link?: string | null;
-            linkText?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            /** Format: date-time */
-            readonly createdAt: string;
-            isActive?: boolean;
-        };
-        SmallQuestion: {
-            /** ID */
-            readonly pk: number;
-            number: number;
-        };
-        Sponsor: {
-            readonly id: number;
-            name: string;
-            /** Format: uri */
-            link: string;
-            description?: string | null;
-            /** Format: uri */
-            image?: string | null;
-        };
-        UserAnswer: {
-            readonly id: number;
-            selectedChoice: number;
-            userCompetition: number;
-            question: number;
-        };
-        UserCompetition: {
-            readonly id: number;
-            readonly registeredHints: string;
-            readonly userId: number;
-            userHints: number[];
-            referralCode?: string;
-            readonly isWinner: boolean;
-            readonly amountWon: string;
-            hintCount?: number;
-            readonly txHash: string | null;
-            isClaimTriggered?: boolean;
-            readonly lives: number;
-            readonly userProfile: number;
-            competition: number;
-        };
-        UserCompetitionWinner: {
-            userProfile: components["schemas"]["UserProfile"];
-            amountWon?: string;
-            txHash?: string | null;
-        };
-        UserProfile: {
-            /** ID */
-            readonly pk: number;
-            username?: string | null;
-            /** Format: uri */
-            image?: string | null;
-            readonly wallets: components["schemas"]["Wallet"][];
-            firstName?: string | null;
-            lastName?: string | null;
-            neuron?: number;
-        };
-        UserStats: {
-            readonly id: number;
-            readonly rankInfo: string;
-            readonly competitionStats: string;
-        };
-        UsernameRequest: {
-            username: string;
-        };
-        Wallet: {
-            /** ID */
-            readonly pk: number;
-            walletAddress: string;
-            /** Format: date-time */
-            readonly createdAt: string;
-        };
-        WalletAddress: {
-            address: string;
-        };
-    };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+  schemas: {
+    Address: {
+      address: string
+    }
+    ChoiceCreate: {
+      readonly id: number
+      text: string
+      isCorrect?: boolean
+      isHintedChoice?: boolean
+    }
+    Competition: {
+      readonly id: number
+      readonly questions: components['schemas']['SmallQuestion'][]
+      readonly sponsors: components['schemas']['Sponsor'][]
+      readonly participantsCount: number
+      readonly builtInHints: components['schemas']['CompetitionHint'][]
+      isFinished: boolean
+      isVip: boolean
+      readonly allowedHintTypes: components['schemas']['Hint'][]
+      readonly formattedPrize: number
+      title: string
+      details?: string | null
+      /** Format: date-time */
+      readonly createdAt: string
+      /** Format: date-time */
+      startAt?: string | null
+      prizeAmount?: string | null
+      chainId?: number | null
+      language?: string
+      tokenDecimals?: number | null
+      token?: string | null
+      tokenAddress?: string | null
+      /** Format: uri */
+      discordUrl?: string | null
+      /** Format: uri */
+      twitterUrl?: string | null
+      /** Format: email */
+      emailUrl: string
+      /** Format: uri */
+      telegramUrl?: string | null
+      /** Format: uri */
+      tokenImage?: string | null
+      /** Format: uri */
+      image?: string | null
+      shuffleAnswers?: boolean
+      splitPrize?: boolean
+      maxParticipants?: number
+      isWinnersAnnounced?: boolean
+      constraintParams?: string | null
+      reversedConstraints?: string | null
+      referralCode?: string | null
+      txHash?: string | null
+      isDemo?: boolean
+      isActive?: boolean
+      isTestnet?: boolean
+      lives?: number
+      hintCount?: number
+      questionTimeSeconds?: number
+      questionHintTimeSeconds?: number
+      restTimeSeconds?: number
+      /** Format: uri */
+      announceWinnersApiUrl?: string | null
+      apiResponse?: string | null
+      apiErrorResponse?: string | null
+      userProfile?: number
+      constraints?: number[]
+    }
+    CompetitionCreate: {
+      readonly id: number
+      title: string
+      details?: string | null
+      /** Format: date-time */
+      startAt?: string | null
+      prizeAmount?: string | null
+      chainId?: number | null
+      token?: string | null
+      tokenDecimals?: number | null
+      tokenAddress?: string | null
+      /** Format: email */
+      emailUrl: string
+      /** Format: uri */
+      telegramUrl?: string | null
+      hintCount?: number
+      questions: components['schemas']['QuestionCreate'][]
+      builtinHints: components['schemas']['CompetitionHintCreate'][]
+      allowedHintTypes: number[]
+    }
+    CompetitionHint: {
+      readonly id: number
+      hint: components['schemas']['Hint']
+      count?: number
+    }
+    CompetitionHintCreate: {
+      count: number
+      hint: number
+    }
+    CompetitionWithResource: {
+      readonly id: number
+      readonly questions: components['schemas']['SmallQuestion'][]
+      readonly sponsors: components['schemas']['Sponsor'][]
+      readonly participantsCount: number
+      readonly builtInHints: components['schemas']['CompetitionHint'][]
+      isFinished: boolean
+      isVip: boolean
+      readonly allowedHintTypes: components['schemas']['Hint'][]
+      readonly formattedPrize: number
+      resources: components['schemas']['Resource'][]
+      title: string
+      details?: string | null
+      /** Format: date-time */
+      readonly createdAt: string
+      /** Format: date-time */
+      startAt?: string | null
+      prizeAmount?: string | null
+      chainId?: number | null
+      language?: string
+      tokenDecimals?: number | null
+      token?: string | null
+      tokenAddress?: string | null
+      /** Format: uri */
+      discordUrl?: string | null
+      /** Format: uri */
+      twitterUrl?: string | null
+      /** Format: email */
+      emailUrl: string
+      /** Format: uri */
+      telegramUrl?: string | null
+      /** Format: uri */
+      tokenImage?: string | null
+      /** Format: uri */
+      image?: string | null
+      shuffleAnswers?: boolean
+      splitPrize?: boolean
+      maxParticipants?: number
+      isWinnersAnnounced?: boolean
+      constraintParams?: string | null
+      reversedConstraints?: string | null
+      referralCode?: string | null
+      txHash?: string | null
+      isDemo?: boolean
+      isActive?: boolean
+      isTestnet?: boolean
+      lives?: number
+      hintCount?: number
+      questionTimeSeconds?: number
+      questionHintTimeSeconds?: number
+      restTimeSeconds?: number
+      /** Format: uri */
+      announceWinnersApiUrl?: string | null
+      apiResponse?: string | null
+      apiErrorResponse?: string | null
+      userProfile?: number
+      constraints?: number[]
+    }
+    ENSConnection: {
+      readonly id: number
+      readonly isConnected: string
+      /** Format: date-time */
+      readonly createdAt: string | null
+      userWalletAddress: string
+      readonly userProfile: number
+    }
+    FarcasterConnection: {
+      readonly id: number
+      readonly isConnected: string
+      /** Format: date-time */
+      readonly createdAt: string | null
+      userWalletAddress: string
+      readonly userProfile: number
+    }
+    GitcoinPassportConnection: {
+      readonly id: number
+      readonly isConnected: string
+      /** Format: date-time */
+      readonly createdAt: string | null
+      userWalletAddress: string
+      readonly userProfile: number
+    }
+    Hint: {
+      readonly id: number
+      readonly hint: string
+      hintType: components['schemas']['HintTypeEnum']
+      title: string
+      description: string
+      isActive?: boolean
+      /** Format: uri */
+      icon?: string | null
+    }
+    HintAchivement: {
+      /** ID */
+      readonly pk: number
+      isUsed?: boolean
+      hint: number
+      /** Format: date-time */
+      usedAt?: string | null
+      /** Format: date-time */
+      readonly createdAt: string
+    }
+    /**
+     * @description * `stats` - Stats
+     *     * `fifty` - Fifty
+     *     * `time` - Time
+     * @enum {string}
+     */
+    HintTypeEnum: 'stats' | 'fifty' | 'time'
+    LensConnection: {
+      readonly id: number
+      readonly isConnected: string
+      /** Format: date-time */
+      readonly createdAt: string | null
+      userWalletAddress: string
+      readonly userProfile: number
+    }
+    MessageResponse: {
+      message: string
+    }
+    PaginatedCompetitionWithResourceList: {
+      /** @example 123 */
+      count: number
+      /**
+       * Format: uri
+       * @example http://api.example.org/accounts/?page=4
+       */
+      next?: string | null
+      /**
+       * Format: uri
+       * @example http://api.example.org/accounts/?page=2
+       */
+      previous?: string | null
+      results: components['schemas']['CompetitionWithResource'][]
+    }
+    PatchedCompetitionCreate: {
+      readonly id?: number
+      title?: string
+      details?: string | null
+      /** Format: date-time */
+      startAt?: string | null
+      prizeAmount?: string | null
+      chainId?: number | null
+      token?: string | null
+      tokenDecimals?: number | null
+      tokenAddress?: string | null
+      /** Format: email */
+      emailUrl?: string
+      /** Format: uri */
+      telegramUrl?: string | null
+      hintCount?: number
+      questions?: components['schemas']['QuestionCreate'][]
+      builtinHints?: components['schemas']['CompetitionHintCreate'][]
+      allowedHintTypes?: number[]
+    }
+    PatchedUserCompetition: {
+      readonly id?: number
+      readonly registeredHints?: string
+      readonly userId?: number
+      userHints?: number[]
+      referralCode?: string
+      readonly isWinner?: boolean
+      readonly amountWon?: string
+      hintCount?: number
+      readonly txHash?: string | null
+      isClaimTriggered?: boolean
+      readonly lives?: number
+      readonly userProfile?: number
+      competition?: number
+    }
+    PatchedUserProfile: {
+      /** ID */
+      readonly pk?: number
+      username?: string | null
+      /** Format: uri */
+      image?: string | null
+      readonly wallets?: components['schemas']['Wallet'][]
+      firstName?: string | null
+      lastName?: string | null
+      neuron?: number
+    }
+    ProfileUserCompetition: {
+      readonly id: number
+      competition: components['schemas']['Competition']
+      readonly isWinner: boolean
+      readonly amountWon: string
+      hintCount?: number
+      readonly txHash: string | null
+      isClaimTriggered?: boolean
+      lives?: number
+      readonly userProfile: number
+      readonly registeredHints: number[]
+    }
+    Question: {
+      readonly id: number
+      readonly choices: string
+      readonly isEligible: string
+      number: number
+      text: string
+      creator?: string
+      competition: number
+    }
+    QuestionCreate: {
+      readonly id: number
+      choices: components['schemas']['ChoiceCreate'][]
+      number: number
+      text: string
+      creator?: string
+    }
+    Resource: {
+      readonly id: number
+      title: string
+      content: string
+      /** Format: uri */
+      link?: string | null
+      linkText?: string | null
+      /** Format: uri */
+      image?: string | null
+      /** Format: date-time */
+      readonly createdAt: string
+      isActive?: boolean
+      competition?: number | null
+    }
+    ResourceWithCompetitionSerialzier: {
+      readonly id: number
+      competition: components['schemas']['Competition']
+      title: string
+      content: string
+      /** Format: uri */
+      link?: string | null
+      linkText?: string | null
+      /** Format: uri */
+      image?: string | null
+      /** Format: date-time */
+      readonly createdAt: string
+      isActive?: boolean
+    }
+    SmallQuestion: {
+      /** ID */
+      readonly pk: number
+      number: number
+    }
+    Sponsor: {
+      readonly id: number
+      name: string
+      /** Format: uri */
+      link: string
+      description?: string | null
+      /** Format: uri */
+      image?: string | null
+    }
+    UserAnswer: {
+      readonly id: number
+      selectedChoice: number
+      userCompetition: number
+      question: number
+    }
+    UserCompetition: {
+      readonly id: number
+      readonly registeredHints: string
+      readonly userId: number
+      userHints: number[]
+      referralCode?: string
+      readonly isWinner: boolean
+      readonly amountWon: string
+      hintCount?: number
+      readonly txHash: string | null
+      isClaimTriggered?: boolean
+      readonly lives: number
+      readonly userProfile: number
+      competition: number
+    }
+    UserCompetitionWinner: {
+      userProfile: components['schemas']['UserProfile']
+      amountWon?: string
+      txHash?: string | null
+    }
+    UserProfile: {
+      /** ID */
+      readonly pk: number
+      username?: string | null
+      /** Format: uri */
+      image?: string | null
+      readonly wallets: components['schemas']['Wallet'][]
+      firstName?: string | null
+      lastName?: string | null
+      neuron?: number
+    }
+    UserStats: {
+      readonly id: number
+      readonly rankInfo: string
+      readonly competitionStats: string
+    }
+    UsernameRequest: {
+      username: string
+    }
+    Wallet: {
+      /** ID */
+      readonly pk: number
+      walletAddress: string
+      /** Format: date-time */
+      readonly createdAt: string
+    }
+    WalletAddress: {
+      address: string
+    }
+  }
+  responses: never
+  parameters: never
+  requestBodies: never
+  headers: never
+  pathItems: never
 }
-export type $defs = Record<string, never>;
+export type $defs = Record<string, never>
 export interface operations {
-    auth_add_wallet_unsafe_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    address: string;
-                };
-            };
-        };
-        responses: {
-            /** @description wallet added successfully */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["WalletAddress"];
-                };
-            };
-            /** @description wallet already exists */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_add_wallets_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user. */
-                    address: string;
-                    /** @description The signature of the wallet address. */
-                    signature: string;
-                    nonce?: string;
-                };
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Wallet"];
-                };
-            };
-            /** @description wallet already exists */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_change_wallet_unsafe_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    address: string;
-                };
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["WalletAddress"];
-                };
-            };
-            /** @description wallet not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_change_wallets_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user. */
-                    address: string;
-                    /** @description The signature of the wallet address. */
-                    signature: string;
-                    /** @description a random string for uniqueness of the sign value to prevent using a used sign. */
-                    nonce: string;
-                };
-            };
-        };
-        responses: {
-            /** @description successful response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Wallet"];
-                };
-            };
-            /** @description wallet not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_create_message_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description sample */
-                    address: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Message to be signed by user wallet */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Address"];
-                };
-            };
-            /** @description wallet already exists */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_discord_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Authentication link for discord has been created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data?: string;
-                    };
-                };
-            };
-            /** @description user already has Discord connection */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_discord_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Authentication link for discord has been created */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No Discord connection found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_discord_callback_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @description discord username */
-                        username?: string;
-                        /** @description discord public user id */
-                        discord_id?: string;
-                    };
-                };
-            };
-            /** @description Discord API error */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                        "error detail"?: {
-                            error?: string;
-                            url?: string;
-                            method?: string;
-                            status_code?: number;
-                            header?: string;
-                            response_text?: string;
-                        };
-                    };
-                };
-            };
-            /** @description User already has Discord connection */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-            /** @description Unexpected server error */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_info_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-        };
-    };
-    auth_info_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UserProfile"];
-                "multipart/form-data": components["schemas"]["UserProfile"];
-                "application/json": components["schemas"]["UserProfile"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-        };
-    };
-    auth_info_partial_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["PatchedUserProfile"];
-                "multipart/form-data": components["schemas"]["PatchedUserProfile"];
-                "application/json": components["schemas"]["PatchedUserProfile"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-        };
-    };
-    auth_telegram_private_partial_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    is_private: boolean;
-                };
-            };
-        };
-        responses: {
-            /** @description telegram visibility changed */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description is_private field is required */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-            /** @description No Telegram connection found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_twitter_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Return OAuth link */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        url?: string;
-                    };
-                };
-            };
-            /** @description twitter did not respond */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_twitter_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description No twitter connection found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_twitter_callback_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Twitter account connected */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-        };
-    };
-    auth_user_all_connections_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    }[];
-                };
-            };
-        };
-    };
-    auth_user_check_username_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UsernameRequest"];
-                "multipart/form-data": components["schemas"]["UsernameRequest"];
-                "application/json": components["schemas"]["UsernameRequest"];
-            };
-        };
-        responses: {
-            /** @description <Username> is available */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-            /** @description Bad request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-            /** @description Username must be more than 3 characters, contain at least one letter, and only contain letters, digits and @/./+/-/_. */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-            /** @description The username <username> is already in use. */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-        };
-    };
-    auth_user_connect_brightid_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user to login/register. */
-                    address: string;
-                    /** @description The signature of the wallet address. */
-                    signature: string;
-                };
-            };
-        };
-        responses: {
-            /** @description User profile is returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-            /** @description Invalid request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-            /** @description Invalid signature */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-            /** @description Sponsorship process is ongoing. Please try again in five minutes. */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_user_connect_ens_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["ENSConnection"];
-                "multipart/form-data": components["schemas"]["ENSConnection"];
-                "application/json": components["schemas"]["ENSConnection"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ENSConnection"];
-                };
-            };
-        };
-    };
-    auth_user_connect_farcaster_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["FarcasterConnection"];
-                "multipart/form-data": components["schemas"]["FarcasterConnection"];
-                "application/json": components["schemas"]["FarcasterConnection"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["FarcasterConnection"];
-                };
-            };
-        };
-    };
-    auth_user_connect_gitcoin_passport_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["GitcoinPassportConnection"];
-                "multipart/form-data": components["schemas"]["GitcoinPassportConnection"];
-                "application/json": components["schemas"]["GitcoinPassportConnection"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["GitcoinPassportConnection"];
-                };
-            };
-        };
-    };
-    auth_user_connect_lens_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["LensConnection"];
-                "multipart/form-data": components["schemas"]["LensConnection"];
-                "application/json": components["schemas"]["LensConnection"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["LensConnection"];
-                };
-            };
-        };
-    };
-    auth_user_disconnect_ens_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    auth_user_disconnect_farcaster_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    auth_user_disconnect_lens_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user to login/register. */
-                    address: string;
-                    /** @description The signature of the wallet address. */
-                    signature: string;
-                };
-            };
-        };
-        responses: {
-            /** @description User profile is returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-            /** @description Invalid request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-            /** @description Invalid signature */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_user_disconnect_lens_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    auth_user_set_username_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UsernameRequest"];
-                "multipart/form-data": components["schemas"]["UsernameRequest"];
-                "application/json": components["schemas"]["UsernameRequest"];
-            };
-        };
-        responses: {
-            /** @description Username successfully Set */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-            /** @description Bad request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-            /** @description This username already exists.
-             *     try another one. */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MessageResponse"];
-                };
-            };
-        };
-    };
-    auth_user_sponsor_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user to login/register. */
-                    address: string;
-                };
-            };
-        };
-        responses: {
-            /** @description verification link and qr content is returned */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                        verification_link?: string;
-                        qr_content?: string;
-                    };
-                };
-            };
-            /** @description Invalid request */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    auth_users_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-        };
-    };
-    auth_users_connections_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description returns all user's connections */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    }[];
-                };
-            };
-        };
-    };
-    auth_users_stats_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description test */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        rank?: string;
-                        winrate?: number;
-                        quiz_count?: number;
-                    };
-                };
-            };
-        };
-    };
-    auth_verify_wallet_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /** @description The wallet address of the user to login/register. */
-                    address: string;
-                    /** @description The signature of the wallet address. */
-                    signature: string;
-                    /** @description a random string for uniqueness of the sign value to prevent using a used sign. */
-                    nonce?: string;
-                };
-            };
-        };
-        responses: {
-            /** @description user profile data with a token */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfile"];
-                };
-            };
-            /** @description invalid data */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    quiz_competitions_list_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                userId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ProfileUserCompetition"][];
-                };
-            };
-        };
-    };
-    quiz_claim_prize_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"][];
-                };
-            };
-        };
-    };
-    quiz_claim_prize_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    user_competition_id: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Claim process started */
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        message?: string;
-                        status?: string;
-                    };
-                };
-            };
-            /** @description invalid request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    quiz_competition_qr_code_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Competition"];
-                };
-            };
-        };
-    };
-    quiz_competitions_list: {
-        parameters: {
-            query?: {
-                /** @description A page number within the paginated result set. */
-                page?: number;
-                /** @description Number of results to return per page. */
-                pageSize?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PaginatedCompetitionWithResourceList"];
-                };
-            };
-        };
-    };
-    quiz_competitions_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["CompetitionWithResource"];
-                "multipart/form-data": components["schemas"]["CompetitionWithResource"];
-                "application/json": components["schemas"]["CompetitionWithResource"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionWithResource"];
-                };
-            };
-        };
-    };
-    quiz_competitions_winners_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                competitionPk: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetitionWinner"][];
-                };
-            };
-        };
-    };
-    quiz_competitions_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    quiz_competitions_referral_code_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-                referralCode: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The code was ok */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Competition"];
-                };
-            };
-            /** @description The code was not ok */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        error?: string;
-                    };
-                };
-            };
-        };
-    };
-    quiz_competitions_enroll_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"][];
-                };
-            };
-        };
-    };
-    quiz_competitions_enroll_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UserCompetition"];
-                "multipart/form-data": components["schemas"]["UserCompetition"];
-                "application/json": components["schemas"]["UserCompetition"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"];
-                };
-            };
-        };
-    };
-    quiz_competitions_enroll_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this user competition. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"];
-                };
-            };
-        };
-    };
-    quiz_competitions_enroll_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this user competition. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UserCompetition"];
-                "multipart/form-data": components["schemas"]["UserCompetition"];
-                "application/json": components["schemas"]["UserCompetition"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"];
-                };
-            };
-        };
-    };
-    quiz_competitions_enroll_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this user competition. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    quiz_competitions_enroll_partial_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this user competition. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["PatchedUserCompetition"];
-                "multipart/form-data": components["schemas"]["PatchedUserCompetition"];
-                "application/json": components["schemas"]["PatchedUserCompetition"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserCompetition"];
-                };
-            };
-        };
-    };
-    quiz_competitions_latest_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionWithResource"];
-                };
-            };
-        };
-    };
-    quiz_competitions_submit_answer_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserAnswer"][];
-                };
-            };
-        };
-    };
-    quiz_competitions_submit_answer_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["UserAnswer"];
-                "multipart/form-data": components["schemas"]["UserAnswer"];
-                "application/json": components["schemas"]["UserAnswer"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserAnswer"];
-                };
-            };
-        };
-    };
-    quiz_dashboard_competitions_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionCreate"][];
-                };
-            };
-        };
-    };
-    quiz_dashboard_competitions_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["CompetitionCreate"];
-                "multipart/form-data": components["schemas"]["CompetitionCreate"];
-                "application/json": components["schemas"]["CompetitionCreate"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionCreate"];
-                };
-            };
-        };
-    };
-    quiz_dashboard_competitions_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionCreate"];
-                };
-            };
-        };
-    };
-    quiz_dashboard_competitions_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["CompetitionCreate"];
-                "multipart/form-data": components["schemas"]["CompetitionCreate"];
-                "application/json": components["schemas"]["CompetitionCreate"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionCreate"];
-                };
-            };
-        };
-    };
-    quiz_dashboard_competitions_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    quiz_dashboard_competitions_partial_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/x-www-form-urlencoded": components["schemas"]["PatchedCompetitionCreate"];
-                "multipart/form-data": components["schemas"]["PatchedCompetitionCreate"];
-                "application/json": components["schemas"]["PatchedCompetitionCreate"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CompetitionCreate"];
-                };
-            };
-        };
-    };
-    quiz_hints_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Hint"][];
-                };
-            };
-        };
-    };
-    quiz_questions_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Question"];
-                };
-            };
-        };
-    };
-    quiz_resources_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ResourceWithCompetitionSerialzier"][];
-                };
-            };
-        };
-    };
-    quiz_sandbox_reset_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                competitionId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    quiz_sandbox_reset_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                competitionId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    quiz_user_hints_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HintAchivement"][];
-                };
-            };
-        };
-    };
-    quiz_user_stats_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserStats"][];
-                };
-            };
-        };
-    };
-    stats_total_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        all_users_count?: number;
-                        competitions_count?: number;
-                        user_enrollments_count?: Record<string, never>;
-                        total_prize_amount?: number;
-                    };
-                };
-            };
-        };
-    };
+  auth_add_wallet_unsafe_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          address: string
+        }
+      }
+    }
+    responses: {
+      /** @description wallet added successfully */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['WalletAddress']
+        }
+      }
+      /** @description wallet already exists */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_add_wallets_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user. */
+          address: string
+          /** @description The signature of the wallet address. */
+          signature: string
+          nonce?: string
+        }
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Wallet']
+        }
+      }
+      /** @description wallet already exists */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_change_wallet_unsafe_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          address: string
+        }
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['WalletAddress']
+        }
+      }
+      /** @description wallet not found */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_change_wallets_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user. */
+          address: string
+          /** @description The signature of the wallet address. */
+          signature: string
+          /** @description a random string for uniqueness of the sign value to prevent using a used sign. */
+          nonce: string
+        }
+      }
+    }
+    responses: {
+      /** @description successful response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Wallet']
+        }
+      }
+      /** @description wallet not found */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_create_message_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description sample */
+          address: string
+        }
+      }
+    }
+    responses: {
+      /** @description Message to be signed by user wallet */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Address']
+        }
+      }
+      /** @description wallet already exists */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_discord_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Authentication link for discord has been created */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            data?: string
+          }
+        }
+      }
+      /** @description user already has Discord connection */
+      409: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  auth_discord_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Authentication link for discord has been created */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description No Discord connection found */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  auth_discord_callback_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            /** @description discord username */
+            username?: string
+            /** @description discord public user id */
+            discord_id?: string
+          }
+        }
+      }
+      /** @description Discord API error */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+            'error detail'?: {
+              error?: string
+              url?: string
+              method?: string
+              status_code?: number
+              header?: string
+              response_text?: string
+            }
+          }
+        }
+      }
+      /** @description User already has Discord connection */
+      409: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+      /** @description Unexpected server error */
+      500: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_info_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+    }
+  }
+  auth_info_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UserProfile']
+        'multipart/form-data': components['schemas']['UserProfile']
+        'application/json': components['schemas']['UserProfile']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+    }
+  }
+  auth_info_partial_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['PatchedUserProfile']
+        'multipart/form-data': components['schemas']['PatchedUserProfile']
+        'application/json': components['schemas']['PatchedUserProfile']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+    }
+  }
+  auth_telegram_private_partial_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          is_private: boolean
+        }
+      }
+    }
+    responses: {
+      /** @description telegram visibility changed */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description is_private field is required */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+      /** @description No Telegram connection found */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  auth_twitter_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Return OAuth link */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            url?: string
+          }
+        }
+      }
+      /** @description twitter did not respond */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  auth_twitter_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description No twitter connection found */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  auth_twitter_callback_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Twitter account connected */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': Record<string, never>
+        }
+      }
+    }
+  }
+  auth_user_all_connections_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }[]
+        }
+      }
+    }
+  }
+  auth_user_check_username_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UsernameRequest']
+        'multipart/form-data': components['schemas']['UsernameRequest']
+        'application/json': components['schemas']['UsernameRequest']
+      }
+    }
+    responses: {
+      /** @description <Username> is available */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+      /** @description Bad request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+      /** @description Username must be more than 3 characters, contain at least one letter, and only contain letters, digits and @/./+/-/_. */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+      /** @description The username <username> is already in use. */
+      409: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+    }
+  }
+  auth_user_connect_brightid_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user to login/register. */
+          address: string
+          /** @description The signature of the wallet address. */
+          signature: string
+        }
+      }
+    }
+    responses: {
+      /** @description User profile is returned */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+      /** @description Invalid request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+      /** @description Invalid signature */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+      /** @description Sponsorship process is ongoing. Please try again in five minutes. */
+      409: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_user_connect_ens_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['ENSConnection']
+        'multipart/form-data': components['schemas']['ENSConnection']
+        'application/json': components['schemas']['ENSConnection']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['ENSConnection']
+        }
+      }
+    }
+  }
+  auth_user_connect_farcaster_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['FarcasterConnection']
+        'multipart/form-data': components['schemas']['FarcasterConnection']
+        'application/json': components['schemas']['FarcasterConnection']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['FarcasterConnection']
+        }
+      }
+    }
+  }
+  auth_user_connect_gitcoin_passport_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['GitcoinPassportConnection']
+        'multipart/form-data': components['schemas']['GitcoinPassportConnection']
+        'application/json': components['schemas']['GitcoinPassportConnection']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['GitcoinPassportConnection']
+        }
+      }
+    }
+  }
+  auth_user_connect_lens_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['LensConnection']
+        'multipart/form-data': components['schemas']['LensConnection']
+        'application/json': components['schemas']['LensConnection']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['LensConnection']
+        }
+      }
+    }
+  }
+  auth_user_disconnect_ens_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  auth_user_disconnect_farcaster_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  auth_user_disconnect_lens_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user to login/register. */
+          address: string
+          /** @description The signature of the wallet address. */
+          signature: string
+        }
+      }
+    }
+    responses: {
+      /** @description User profile is returned */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+      /** @description Invalid request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+      /** @description Invalid signature */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_user_disconnect_lens_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  auth_user_set_username_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UsernameRequest']
+        'multipart/form-data': components['schemas']['UsernameRequest']
+        'application/json': components['schemas']['UsernameRequest']
+      }
+    }
+    responses: {
+      /** @description Username successfully Set */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+      /** @description Bad request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+      /** @description This username already exists.
+       *     try another one. */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['MessageResponse']
+        }
+      }
+    }
+  }
+  auth_user_sponsor_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user to login/register. */
+          address: string
+        }
+      }
+    }
+    responses: {
+      /** @description verification link and qr content is returned */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+            verification_link?: string
+            qr_content?: string
+          }
+        }
+      }
+      /** @description Invalid request */
+      403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  auth_users_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+    }
+  }
+  auth_users_connections_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description returns all user's connections */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }[]
+        }
+      }
+    }
+  }
+  auth_users_stats_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description test */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            rank?: string
+            winrate?: number
+            quiz_count?: number
+          }
+        }
+      }
+    }
+  }
+  auth_verify_wallet_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description The wallet address of the user to login/register. */
+          address: string
+          /** @description The signature of the wallet address. */
+          signature: string
+          /** @description a random string for uniqueness of the sign value to prevent using a used sign. */
+          nonce?: string
+        }
+      }
+    }
+    responses: {
+      /** @description user profile data with a token */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfile']
+        }
+      }
+      /** @description invalid data */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }
+        }
+      }
+    }
+  }
+  quiz_competitions_list_2: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        userId: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['ProfileUserCompetition'][]
+        }
+      }
+    }
+  }
+  quiz_claim_prize_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition'][]
+        }
+      }
+    }
+  }
+  quiz_claim_prize_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/json': {
+          user_competition_id: string
+        }
+      }
+    }
+    responses: {
+      /** @description Claim process started */
+      202: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+            status?: string
+          }
+        }
+      }
+      /** @description invalid request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  quiz_competition_qr_code_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Competition']
+        }
+      }
+    }
+  }
+  quiz_competitions_list: {
+    parameters: {
+      query?: {
+        /** @description A page number within the paginated result set. */
+        page?: number
+        /** @description Number of results to return per page. */
+        pageSize?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['PaginatedCompetitionWithResourceList']
+        }
+      }
+    }
+  }
+  quiz_competitions_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['CompetitionWithResource']
+        'multipart/form-data': components['schemas']['CompetitionWithResource']
+        'application/json': components['schemas']['CompetitionWithResource']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionWithResource']
+        }
+      }
+    }
+  }
+  quiz_competitions_winners_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competitionPk: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetitionWinner'][]
+        }
+      }
+    }
+  }
+  quiz_competitions_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  quiz_competitions_referral_code_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+        referralCode: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description The code was ok */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Competition']
+        }
+      }
+      /** @description The code was not ok */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            error?: string
+          }
+        }
+      }
+    }
+  }
+  quiz_competitions_enroll_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition'][]
+        }
+      }
+    }
+  }
+  quiz_competitions_enroll_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UserCompetition']
+        'multipart/form-data': components['schemas']['UserCompetition']
+        'application/json': components['schemas']['UserCompetition']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition']
+        }
+      }
+    }
+  }
+  quiz_competitions_enroll_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description A unique integer value identifying this user competition. */
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition']
+        }
+      }
+    }
+  }
+  quiz_competitions_enroll_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description A unique integer value identifying this user competition. */
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UserCompetition']
+        'multipart/form-data': components['schemas']['UserCompetition']
+        'application/json': components['schemas']['UserCompetition']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition']
+        }
+      }
+    }
+  }
+  quiz_competitions_enroll_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description A unique integer value identifying this user competition. */
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  quiz_competitions_enroll_partial_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        /** @description A unique integer value identifying this user competition. */
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['PatchedUserCompetition']
+        'multipart/form-data': components['schemas']['PatchedUserCompetition']
+        'application/json': components['schemas']['PatchedUserCompetition']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserCompetition']
+        }
+      }
+    }
+  }
+  quiz_competitions_latest_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionWithResource']
+        }
+      }
+    }
+  }
+  quiz_competitions_submit_answer_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserAnswer'][]
+        }
+      }
+    }
+  }
+  quiz_competitions_submit_answer_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['UserAnswer']
+        'multipart/form-data': components['schemas']['UserAnswer']
+        'application/json': components['schemas']['UserAnswer']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserAnswer']
+        }
+      }
+    }
+  }
+  quiz_dashboard_competitions_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreate'][]
+        }
+      }
+    }
+  }
+  quiz_dashboard_competitions_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['CompetitionCreate']
+        'multipart/form-data': components['schemas']['CompetitionCreate']
+        'application/json': components['schemas']['CompetitionCreate']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreate']
+        }
+      }
+    }
+  }
+  quiz_dashboard_competitions_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreate']
+        }
+      }
+    }
+  }
+  quiz_dashboard_competitions_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['CompetitionCreate']
+        'multipart/form-data': components['schemas']['CompetitionCreate']
+        'application/json': components['schemas']['CompetitionCreate']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreate']
+        }
+      }
+    }
+  }
+  quiz_dashboard_competitions_destroy: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  quiz_dashboard_competitions_partial_update: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: string
+      }
+      cookie?: never
+    }
+    requestBody?: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['PatchedCompetitionCreate']
+        'multipart/form-data': components['schemas']['PatchedCompetitionCreate']
+        'application/json': components['schemas']['PatchedCompetitionCreate']
+      }
+    }
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreate']
+        }
+      }
+    }
+  }
+  quiz_hints_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Hint'][]
+        }
+      }
+    }
+  }
+  quiz_questions_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['Question']
+        }
+      }
+    }
+  }
+  quiz_resources_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['ResourceWithCompetitionSerialzier'][]
+        }
+      }
+    }
+  }
+  quiz_sandbox_reset_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competitionId: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  quiz_sandbox_reset_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competitionId: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description No response body */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  quiz_user_hints_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['HintAchivement'][]
+        }
+      }
+    }
+  }
+  quiz_user_stats_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserStats'][]
+        }
+      }
+    }
+  }
+  stats_total_retrieve: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            all_users_count?: number
+            competitions_count?: number
+            user_enrollments_count?: Record<string, never>
+            total_prize_amount?: number
+          }
+        }
+      }
+    }
+  }
 }

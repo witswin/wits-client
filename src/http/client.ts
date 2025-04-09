@@ -12,7 +12,7 @@ export const createClientAPI = ({
   const client = createClient<paths>({ baseUrl: witsApiUrl })
 
   const jwtAuthenticationMiddleware: Middleware = {
-    async onRequest({ request, options }) {
+    async onRequest({ request }) {
       if (jwtToken) request.headers.set('Authorization', `Bearer ${jwtToken}`)
       if (appId) request.headers.set('X-APP-ID', appId)
 

@@ -8,6 +8,8 @@ import type { components } from '../api-dashboard'
 
 export type MessageHandler = (args: MessageData) => void
 
+export type HintDataType = Record<number, number> | number[]
+
 export type MessageData =
   | {
       type: QuizEntryMessageType.NEW_QUESTION
@@ -15,7 +17,7 @@ export type MessageData =
     }
   | {
       type: QuizEntryMessageType.HINT_QUESTION
-      data: any
+      data: HintDataType
       questionId: number
       hintType: HINTS
       hintId: number
@@ -31,7 +33,7 @@ export type MessageData =
         | QuizEntryMessageType.HINT_QUESTION
         | QuizEntryMessageType.QUIZ_STATS
       >
-      data: any
+      data: unknown
     }
 
 type QuestionWithoutIsCorrect = Omit<
@@ -134,7 +136,7 @@ export class QuizWebSocketHandler {
 
   public onHint(
     callback: (data: {
-      data: any
+      data: HintDataType
       hintType: HINTS
       questionId: number
       hintId: number
@@ -145,7 +147,7 @@ export class QuizWebSocketHandler {
 
   public offHint(
     callback: (data: {
-      data: any
+      data: HintDataType
       hintType: HINTS
       questionId: number
       hintId: number
@@ -208,11 +210,11 @@ export class QuizWebSocketHandler {
     this.off(QuizEntryMessageType.CORRECT_ANSWER, callback as MessageHandler)
   }
 
-  public onQuizFinished(callback: (res: {}) => void) {
+  public onQuizFinished(callback: () => void) {
     this.on(QuizEntryMessageType.QUIZ_FINISHED, callback as MessageHandler)
   }
 
-  public offQuizFinished(callback: (res: {}) => void) {
+  public offQuizFinished(callback: () => void) {
     this.off(QuizEntryMessageType.QUIZ_FINISHED, callback as MessageHandler)
   }
 

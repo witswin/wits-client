@@ -112,7 +112,7 @@ export class WebSocketClient {
     }
   }
 
-  public sendJSONMessage(message: any): void {
+  public sendJSONMessage(message: unknown): void {
     return this.sendJSONMessage(JSON.stringify(message))
   }
 

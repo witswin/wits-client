@@ -1,8 +1,8 @@
 export class APIError extends Error {
   public readonly status: number
-  public readonly details: any
+  public readonly details: unknown
 
-  constructor(status: number, message: string, details?: any) {
+  constructor(status: number, message: string, details?: unknown) {
     super(message)
     this.name = 'APIError'
     this.status = status
@@ -14,7 +14,7 @@ export class APIError extends Error {
     let details = null
 
     try {
-      const json: any = await res.json()
+      const json = (await res.json()) as { message?: string }
       message = json.message || message
       details = json
     } catch {

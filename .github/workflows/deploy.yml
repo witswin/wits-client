@@ -26,7 +26,7 @@ jobs:
 
       # Build the package with Bun
       - name: Build the package
-        run: bun build # Bun's build command
+        run: bun run build # Bun's build command
 
       # Publish the package to npm
       - name: Publish to npm

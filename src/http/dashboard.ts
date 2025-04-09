@@ -47,7 +47,7 @@ export const createDashboardAPI = ({
   const client = createClient<paths>({ baseUrl: witsApiUrl })
 
   const privateKeySignAuthenticationMiddleware: Middleware = {
-    async onRequest({ request, options }) {
+    async onRequest({ request }) {
       const timestamp = new Date().getTime() / 1000
       const nonce = generateNonce()
       const url = new URL(request.url)
