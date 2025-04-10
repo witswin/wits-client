@@ -9,6 +9,8 @@
 - Supports both browser and Node.js environments
 - Useful helpers and utilities for common API tasks
 
+For more documentation head to [WITS](https://wits.win/docs).
+
 ## Installation
 
 ```bash
@@ -20,33 +22,20 @@ npm install wits-client
 ## Usage
 
 ```ts
-import { WitsClient } from 'wits-client'
+import { createClientAPI, createDashboardAPI } from 'wits-client'
 
-const client = new WitsClient({ apiKey: 'your-api-key' })
+export const clientAPI = createClientAPI({
+  appId: 'APP_ID',
+  jwtToken: 'jwtToken'
+})
 
-async function fetchData() {
-  const result = await client.getDashboardData()
-  console.log(result)
-}
+// Server side only
+
+export const serverAPI = createDashboardAPI({
+  appId: '',
+  privateKey: ''
+})
 ```
-
-## API
-
-### `WitsClient`
-
-#### Constructor
-
-```ts
-new WitsClient(options: { apiKey: string })
-```
-
-#### Methods
-
-- `getDashboardData(): Promise<DashboardData>`
-- `getUserProfile(id: string): Promise<UserProfile>`
-- `updateSettings(data: SettingsPayload): Promise<void>`
-
-_(Add real method names and types based on your actual API.)_
 
 ## Development
 
