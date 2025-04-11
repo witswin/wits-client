@@ -10,6 +10,13 @@ export type MessageHandler = (args: MessageData) => void
 
 export type HintDataType = Record<number, number> | number[]
 
+export type CorrectAnswerBroadcastData = {
+  questionId: number
+  answerId: number
+  questionNumber: number
+  expire: number
+}
+
 export type MessageData =
   | {
       type: QuizEntryMessageType.NEW_QUESTION
@@ -183,14 +190,7 @@ export class QuizWebSocketHandler {
   }
 
   public onCorrectAnswerBroadcast(
-    callback: (res: {
-      data: {
-        questionId: number
-        answerId: number
-        questionNumber: number
-        expire: number
-      }
-    }) => void
+    callback: (res: { data: CorrectAnswerBroadcastData }) => void
   ) {
     this.on(QuizEntryMessageType.CORRECT_ANSWER, callback as MessageHandler)
   }
