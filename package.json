@@ -1,6 +1,6 @@
 {
   "name": "wits-client",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A client for using wits.win apis",
   "license": "MIT",
   "homepage": "https://wits.win",
@@ -25,10 +25,15 @@
       "require": "./dist/cjs/wits-client.cjs",
       "types": "./dist/wits-client.d.ts"
     },
-    "./api-client": {
-      "import": "./dist/api-client.mjs",
-      "require": "./dist/cjs/api-client.cjs",
-      "types": "./dist/api-client.d.ts"
+    "./api-client-v1": {
+      "import": "./dist/api-client-v1.mjs",
+      "require": "./dist/cjs/api-client-v1.cjs",
+      "types": "./dist/api-client-v1.d.ts"
+    },
+    "./api-client-v2": {
+      "import": "./dist/api-client-v2.mjs",
+      "require": "./dist/cjs/api-client-v2.cjs",
+      "types": "./dist/api-client-v2.d.ts"
     },
     "./api-dashboard": {
       "import": "./dist/api-dashboard.mjs",
@@ -58,7 +63,7 @@
     "lint": "eslint --ext js,ts src test",
     "build": "bun clean && tsup",
     "create-types:user": "openapi-typescript ./wits-api.yaml -o src/api-client-v1.d.ts",
-    "create-types:user-v2": "openapi-typescript ./wits-api.yaml -o src/api-client-v2.d.ts",
+    "create-types:user-v2": "openapi-typescript ./client-v2-apis.json -o src/api-client-v2.d.ts",
     "create-types:dashboard": "openapi-typescript ./wits-dashboard-api.json -o src/api-dashboard.d.ts",
     "create-types": "bun create-types:user && bun create-types:dashboard && bun create-types:user-v2",
     "prepublishOnly": "bun clean && bun format:check && bun lint && bun test",

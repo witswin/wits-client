@@ -4,7 +4,7 @@ import {
   WebSocketClient,
   type WebSocketOptions
 } from './client'
-import type { components } from '../api-dashboard'
+import type { components } from '../api-client-v2'
 
 export type MessageHandler = (args: MessageData) => void
 

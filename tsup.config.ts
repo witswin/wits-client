@@ -40,7 +40,8 @@ export default defineConfig((options): Options[] => {
   const commonOptions: Options = {
     entry: {
       'wits-client': 'src/index.ts',
-      'wits-client.api-client': 'src/api-client.d.ts',
+      'wits-client.api-client-v1': 'src/api-client-v1.d.ts',
+      'wits-client.api-client-v2': 'src/api-client-v2.d.ts',
       'wits-client.api-dashboard': 'src/api-dashboard.d.ts',
       'wits-client.config': 'src/config.ts',
       'wits-client.ws': 'src/ws/index.ts'
