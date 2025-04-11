@@ -17,6 +17,13 @@ export type CorrectAnswerBroadcastData = {
   expire: number
 }
 
+export type HintResponseData = {
+  data: HintDataType
+  hintType: HINTS
+  questionId: number
+  hintId: number
+}
+
 export type MessageData =
   | {
       type: QuizEntryMessageType.NEW_QUESTION
@@ -139,25 +146,11 @@ export class QuizWebSocketHandler {
     })
   }
 
-  public onHint(
-    callback: (data: {
-      data: HintDataType
-      hintType: HINTS
-      questionId: number
-      hintId: number
-    }) => void
-  ) {
+  public onHint(callback: (data: HintResponseData) => void) {
     this.on(QuizEntryMessageType.HINT_QUESTION, callback as MessageHandler)
   }
 
-  public offHint(
-    callback: (data: {
-      data: HintDataType
-      hintType: HINTS
-      questionId: number
-      hintId: number
-    }) => void
-  ) {
+  public offHint(callback: (data: HintResponseData) => void) {
     this.off(QuizEntryMessageType.HINT_QUESTION, callback as MessageHandler)
   }
 
