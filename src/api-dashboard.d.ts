@@ -4,307 +4,307 @@
  */
 
 export interface paths {
-    "/dashboard/users/register/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Register User */
-        post: operations["dashboard_api_register_user_register_user"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/dashboard/users/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get User */
-        get: operations["dashboard_api_register_user_get_user"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/dashboard/users/list/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Users Lsit */
-        get: operations["dashboard_api_register_user_get_users_lsit"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/dashboard/users/login-with-username/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Login User With Username */
-        post: operations["dashboard_api_register_user_login_user_with_username"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/dashboard/users/login-with-user-id/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Login User With User Id */
-        post: operations["dashboard_api_register_user_login_user_with_user_id"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
+  '/dashboard/users/register/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Register User */
+    post: operations['dashboard_api_register_user_register_user']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/dashboard/users/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get User */
+    get: operations['dashboard_api_register_user_get_user']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/dashboard/users/list/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Users Lsit */
+    get: operations['dashboard_api_register_user_get_users_lsit']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/dashboard/users/login-with-username/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Login User With Username */
+    post: operations['dashboard_api_register_user_login_user_with_username']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/dashboard/users/login-with-user-id/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Login User With User Id */
+    post: operations['dashboard_api_register_user_login_user_with_user_id']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
-export type webhooks = Record<string, never>;
+export type webhooks = Record<string, never>
 export interface components {
-    schemas: {
-        /** UserProfileSchema */
-        UserProfileSchema: {
-            /** Wallets */
-            wallets: components["schemas"]["WalletSchema"][];
-            /** Pk */
-            pk: number;
-            /** Username */
-            username: string;
-            /** Neuron */
-            neuron: number;
-            /** Token */
-            token: string | null;
-            /** Refreshtoken */
-            refreshToken: string | null;
-        };
-        /** WalletSchema */
-        WalletSchema: {
-            /** Pk */
-            pk: number;
-            /** Walletaddress */
-            walletAddress: string;
-            /** Createdat */
-            createdAt: string;
-        };
-        /** RegisterUserSchemaIn */
-        RegisterUserSchemaIn: {
-            /** Username */
-            username: string;
-        };
-        /** Input */
-        Input: {
-            /**
-             * Limit
-             * @default 100
-             */
-            limit: number;
-            /**
-             * Offset
-             * @default 0
-             */
-            offset: number;
-        };
-        /** PagedUserProfileSchema */
-        PagedUserProfileSchema: {
-            /** Items */
-            items: components["schemas"]["UserProfileSchema"][];
-            /** Count */
-            count: number;
-        };
-        /** LoginWithUserIdIn */
-        LoginWithUserIdIn: {
-            /** Id */
-            id: number;
-        };
-    };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+  schemas: {
+    /** UserProfileSchema */
+    UserProfileSchema: {
+      /** Wallets */
+      wallets: components['schemas']['WalletSchema'][]
+      /** Pk */
+      pk: number
+      /** Username */
+      username: string
+      /** Neuron */
+      neuron: number
+      /** Token */
+      token: string | null
+      /** Refreshtoken */
+      refreshToken: string | null
+    }
+    /** WalletSchema */
+    WalletSchema: {
+      /** Pk */
+      pk: number
+      /** Walletaddress */
+      walletAddress: string
+      /** Createdat */
+      createdAt: string
+    }
+    /** RegisterUserSchemaIn */
+    RegisterUserSchemaIn: {
+      /** Username */
+      username: string
+    }
+    /** Input */
+    Input: {
+      /**
+       * Limit
+       * @default 100
+       */
+      limit: number
+      /**
+       * Offset
+       * @default 0
+       */
+      offset: number
+    }
+    /** PagedUserProfileSchema */
+    PagedUserProfileSchema: {
+      /** Items */
+      items: components['schemas']['UserProfileSchema'][]
+      /** Count */
+      count: number
+    }
+    /** LoginWithUserIdIn */
+    LoginWithUserIdIn: {
+      /** Id */
+      id: number
+    }
+  }
+  responses: never
+  parameters: never
+  requestBodies: never
+  headers: never
+  pathItems: never
 }
-export type $defs = Record<string, never>;
+export type $defs = Record<string, never>
 export interface operations {
-    dashboard_api_register_user_register_user: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RegisterUserSchemaIn"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfileSchema"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
-                };
-            };
-        };
-    };
-    dashboard_api_register_user_get_user: {
-        parameters: {
-            query?: {
-                username?: string;
-                userid?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfileSchema"];
-                };
-            };
-        };
-    };
-    dashboard_api_register_user_get_users_lsit: {
-        parameters: {
-            query?: {
-                limit?: number;
-                offset?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PagedUserProfileSchema"];
-                };
-            };
-        };
-    };
-    dashboard_api_register_user_login_user_with_username: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RegisterUserSchemaIn"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfileSchema"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
-                };
-            };
-        };
-    };
-    dashboard_api_register_user_login_user_with_user_id: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LoginWithUserIdIn"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UserProfileSchema"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
-                };
-            };
-        };
-    };
+  dashboard_api_register_user_register_user: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['RegisterUserSchemaIn']
+      }
+    }
+    responses: {
+      /** @description Created */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfileSchema']
+        }
+      }
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }
+        }
+      }
+    }
+  }
+  dashboard_api_register_user_get_user: {
+    parameters: {
+      query?: {
+        username?: string
+        userid?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfileSchema']
+        }
+      }
+    }
+  }
+  dashboard_api_register_user_get_users_lsit: {
+    parameters: {
+      query?: {
+        limit?: number
+        offset?: number
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['PagedUserProfileSchema']
+        }
+      }
+    }
+  }
+  dashboard_api_register_user_login_user_with_username: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['RegisterUserSchemaIn']
+      }
+    }
+    responses: {
+      /** @description Created */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfileSchema']
+        }
+      }
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }
+        }
+      }
+    }
+  }
+  dashboard_api_register_user_login_user_with_user_id: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['LoginWithUserIdIn']
+      }
+    }
+    responses: {
+      /** @description Created */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfileSchema']
+        }
+      }
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }
+        }
+      }
+    }
+  }
 }
