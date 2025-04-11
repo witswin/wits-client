@@ -69,6 +69,9 @@
   "module": "./dist/wits-client.mjs",
   "types": "./dist/wits-client.d.ts",
   "type": "module",
+  "dependencies": {
+    "openapi-fetch": "^0.13.5"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.3",
     "@eslint/js": "^9.24.0",
@@ -83,7 +86,6 @@
     "eslint": "^9.24.0",
     "glob": "^10.3.10",
     "globals": "^16.0.0",
-    "openapi-fetch": "^0.13.5",
     "openapi-typescript": "^7.6.1",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
