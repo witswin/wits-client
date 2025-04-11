@@ -4,899 +4,307 @@
  */
 
 export interface paths {
-  '/v2/quiz/competitions/enroll/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Enroll To Competition */
-    post: operations['quiz_apis_competitions_api_enroll_to_competition']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/quiz/competitions/enroll/{id}': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /** Delete Competition Enroll */
-    delete: operations['quiz_apis_competitions_api_delete_competition_enroll']
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/quiz/competitions/{id}/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Quiz */
-    get: operations['quiz_apis_competitions_api_get_quiz']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/quiz/competitions/demo/{id}/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Demo Quiz */
-    get: operations['quiz_apis_competitions_api_get_demo_quiz']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/dashboard/users/register/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Register User */
-    post: operations['dashboard_api_register_user_register_user']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/dashboard/users/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get User */
-    get: operations['dashboard_api_register_user_get_user']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/dashboard/users/list/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Users Lsit */
-    get: operations['dashboard_api_register_user_get_users_lsit']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/dashboard/users/login-with-username/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Login User With Username */
-    post: operations['dashboard_api_register_user_login_user_with_username']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  '/v2/dashboard/users/login-with-user-id/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Login User With User Id */
-    post: operations['dashboard_api_register_user_login_user_with_user_id']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
+    "/dashboard/users/register/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Register User */
+        post: operations["dashboard_api_register_user_register_user"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/dashboard/users/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get User */
+        get: operations["dashboard_api_register_user_get_user"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/dashboard/users/list/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Users Lsit */
+        get: operations["dashboard_api_register_user_get_users_lsit"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/dashboard/users/login-with-username/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Login User With Username */
+        post: operations["dashboard_api_register_user_login_user_with_username"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/dashboard/users/login-with-user-id/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Login User With User Id */
+        post: operations["dashboard_api_register_user_login_user_with_user_id"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-export type webhooks = Record<string, never>
+export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    /** CompetitionEnrollOut */
-    CompetitionEnrollOut: {
-      /** Id */
-      id: number
-      /** Registeredhints */
-      registeredHints: number[]
-      /** Userid */
-      userId: number
-      /** Iswinner */
-      isWinner: boolean
-      /** Amountwon */
-      amountWon: string
-      /** Hintcount */
-      hintCount: number
-      /** Txhash */
-      txHash: string | null
-      /** Lives */
-      lives: number
-      /** Userprofile */
-      userProfile: number
-      /** Competition */
-      competition: number
-    }
-    /** CompetitionEnrollIn */
-    CompetitionEnrollIn: {
-      /** Userhints */
-      userHints: number[]
-      /** Referralcode */
-      referralCode: string | null
-      /** Competition */
-      competition: number
-      /** Competitiondata */
-      competitionData: {
-        [key: string]: unknown
-      } | null
-    }
-    /** CompetitionHintSchema */
-    CompetitionHintSchema: {
-      hint: components['schemas']['HintSchema']
-      /** ID */
-      id?: number | null
-      /**
-       * Count
-       * @default 1
-       */
-      count: number
-    }
-    /** CompetitionWithResourceSchema */
-    CompetitionWithResourceSchema: {
-      /** Questions */
-      questions: components['schemas']['SmallQuestionSchema'][]
-      /** Sponsors */
-      sponsors: components['schemas']['SponsorSchema'][]
-      /** Participantscount */
-      participantsCount: number
-      /** Userprofile */
-      userProfile: number
-      /** Builtinhints */
-      builtInHints: components['schemas']['CompetitionHintSchema'][]
-      /** Isfinished */
-      isFinished: boolean
-      /** Isvip */
-      isVip: boolean
-      /** Prizeamount */
-      prizeAmount: number
-      /** Allowedhinttypes */
-      allowedHintTypes: components['schemas']['HintSchema'][]
-      /** Formattedprize */
-      formattedPrize: number | string
-      /** ID */
-      id?: number | null
-      /** Title */
-      title: string
-      /** Details */
-      details?: string | null
-      /**
-       * Created At
-       * Format: date-time
-       */
-      createdAt: string
-      /** Start At */
-      startAt?: string | null
-      /** Chain Id */
-      chainId?: number | null
-      /**
-       * Language
-       * @default en
-       */
-      language: string
-      /**
-       * Token Decimals
-       * @default 18
-       */
-      tokenDecimals: number | null
-      /** Token */
-      token?: string | null
-      /** Token Address */
-      tokenAddress?: string | null
-      /** Discord Url */
-      discordUrl?: string | null
-      /** Twitter Url */
-      twitterUrl?: string | null
-      /** Email Url */
-      emailUrl: string
-      /** Telegram Url */
-      telegramUrl?: string | null
-      /** Token Image */
-      tokenImage?: string | null
-      /** Image */
-      image?: string | null
-      /**
-       * Shuffle Answers
-       * @default false
-       */
-      shuffleAnswers: boolean
-      /**
-       * Split Prize
-       * @default true
-       */
-      splitPrize: boolean
-      /**
-       * Max Participants
-       * @default 0
-       */
-      maxParticipants: number
-      /**
-       * Is Winners Announced
-       * @default false
-       */
-      isWinnersAnnounced: boolean
-      /** Constraint Params */
-      constraintParams?: string | null
-      /** Reversed Constraints */
-      reversedConstraints?: string | null
-      /** Referral Code */
-      referralCode?: string | null
-      /** Tx Hash */
-      txHash?: string | null
-      /**
-       * Is Demo
-       * @default false
-       */
-      isDemo: boolean
-      /**
-       * Is Active
-       * @default true
-       */
-      isActive: boolean
-      /**
-       * Is Testnet
-       * @default false
-       */
-      isTestnet: boolean
-      /**
-       * Lives
-       * @default 1
-       */
-      lives: number
-      /**
-       * Hint Count
-       * @default 1
-       */
-      hintCount: number
-      /**
-       * Question Time Seconds
-       * @default 14
-       */
-      questionTimeSeconds: number
-      /**
-       * Question Hint Time Seconds
-       * @default 4
-       */
-      questionHintTimeSeconds: number
-      /**
-       * Rest Time Seconds
-       * @default 9
-       */
-      restTimeSeconds: number
-      /** Announce Winners Api Url */
-      announceWinnersApiUrl?: string | null
-      /** Api Response */
-      apiResponse?: string | null
-      /** Api Error Response */
-      apiErrorResponse?: string | null
-      /** Constraints */
-      constraints: number[]
-      /** Resources */
-      resources: components['schemas']['ResourceSchema'][]
-    }
-    /** HintSchema */
-    HintSchema: {
-      /** Hint */
-      hint: number
-      /** ID */
-      id?: number | null
-      /** Hint Type */
-      hintType: string
-      /** Title */
-      title: string
-      /** Description */
-      description: string
-      /**
-       * Is Active
-       * @default true
-       */
-      isActive: boolean
-      /** Icon */
-      icon?: string | null
-    }
-    /** ResourceSchema */
-    ResourceSchema: {
-      /** ID */
-      id?: number | null
-      /** Title */
-      title: string
-      /** Content */
-      content: string
-      /** Link */
-      link?: string | null
-      /** Link Text */
-      linkText?: string | null
-      /** Image */
-      image?: string | null
-      /**
-       * Created At
-       * Format: date-time
-       */
-      createdAt: string
-      /** Competition */
-      competition_id?: number | null
-      /**
-       * Is Active
-       * @default true
-       */
-      isActive: boolean
-    }
-    /** SmallQuestionSchema */
-    SmallQuestionSchema: {
-      /** Pk */
-      pk: number
-      /** Number */
-      number: number
-    }
-    /** SponsorSchema */
-    SponsorSchema: {
-      /** ID */
-      id?: number | null
-      /** Name */
-      name: string
-      /** Link */
-      link: string
-      /** Description */
-      description?: string | null
-      /** Image */
-      image?: string | null
-    }
-    /** ChoiceSchema */
-    ChoiceSchema: {
-      /** Iscorrect */
-      isCorrect?: boolean | null
-      /** Question */
-      question: number
-      /** ID */
-      id?: number | null
-      /** Text */
-      text: string
-    }
-    /** DemoCompetitionWithResourceSchema */
-    DemoCompetitionWithResourceSchema: {
-      /** Questions */
-      questions: components['schemas']['QuestionSchema'][]
-      /** Sponsors */
-      sponsors: components['schemas']['SponsorSchema'][]
-      /** Participantscount */
-      participantsCount: number
-      /** Userprofile */
-      userProfile: number
-      /** Builtinhints */
-      builtInHints: components['schemas']['CompetitionHintSchema'][]
-      /** Isfinished */
-      isFinished: boolean
-      /** Isvip */
-      isVip: boolean
-      /** Prizeamount */
-      prizeAmount: number
-      /** Allowedhinttypes */
-      allowedHintTypes: components['schemas']['HintSchema'][]
-      /** Formattedprize */
-      formattedPrize: number | string
-      /** ID */
-      id?: number | null
-      /** Title */
-      title: string
-      /** Details */
-      details?: string | null
-      /**
-       * Created At
-       * Format: date-time
-       */
-      createdAt: string
-      /** Start At */
-      startAt?: string | null
-      /** Chain Id */
-      chainId?: number | null
-      /**
-       * Language
-       * @default en
-       */
-      language: string
-      /**
-       * Token Decimals
-       * @default 18
-       */
-      tokenDecimals: number | null
-      /** Token */
-      token?: string | null
-      /** Token Address */
-      tokenAddress?: string | null
-      /** Discord Url */
-      discordUrl?: string | null
-      /** Twitter Url */
-      twitterUrl?: string | null
-      /** Email Url */
-      emailUrl: string
-      /** Telegram Url */
-      telegramUrl?: string | null
-      /** Token Image */
-      tokenImage?: string | null
-      /** Image */
-      image?: string | null
-      /**
-       * Shuffle Answers
-       * @default false
-       */
-      shuffleAnswers: boolean
-      /**
-       * Split Prize
-       * @default true
-       */
-      splitPrize: boolean
-      /**
-       * Max Participants
-       * @default 0
-       */
-      maxParticipants: number
-      /**
-       * Is Winners Announced
-       * @default false
-       */
-      isWinnersAnnounced: boolean
-      /** Constraint Params */
-      constraintParams?: string | null
-      /** Reversed Constraints */
-      reversedConstraints?: string | null
-      /** Referral Code */
-      referralCode?: string | null
-      /** Tx Hash */
-      txHash?: string | null
-      /**
-       * Is Demo
-       * @default false
-       */
-      isDemo: boolean
-      /**
-       * Is Active
-       * @default true
-       */
-      isActive: boolean
-      /**
-       * Is Testnet
-       * @default false
-       */
-      isTestnet: boolean
-      /**
-       * Lives
-       * @default 1
-       */
-      lives: number
-      /**
-       * Hint Count
-       * @default 1
-       */
-      hintCount: number
-      /**
-       * Question Time Seconds
-       * @default 14
-       */
-      questionTimeSeconds: number
-      /**
-       * Question Hint Time Seconds
-       * @default 4
-       */
-      questionHintTimeSeconds: number
-      /**
-       * Rest Time Seconds
-       * @default 9
-       */
-      restTimeSeconds: number
-      /** Announce Winners Api Url */
-      announceWinnersApiUrl?: string | null
-      /** Api Response */
-      apiResponse?: string | null
-      /** Api Error Response */
-      apiErrorResponse?: string | null
-      /** Constraints */
-      constraints: number[]
-      /** Resources */
-      resources: components['schemas']['ResourceSchema'][]
-    }
-    /** QuestionSchema */
-    QuestionSchema: {
-      /** Choices */
-      choices: components['schemas']['ChoiceSchema'][]
-      /** Competition */
-      competition: number
-      /** ID */
-      id?: number | null
-      /** Number */
-      number: number
-      /** Text */
-      text: string
-      /**
-       * Creator
-       * @default Wits Team
-       */
-      creator: string
-    }
-    /** UserProfileSchema */
-    UserProfileSchema: {
-      /** Wallets */
-      wallets: components['schemas']['WalletSchema'][]
-      /** Pk */
-      pk: number
-      /** Username */
-      username: string
-      /** Neuron */
-      neuron: number
-      /** Token */
-      token: string | null
-      /** Refreshtoken */
-      refreshToken: string | null
-    }
-    /** WalletSchema */
-    WalletSchema: {
-      /** Pk */
-      pk: number
-      /** Walletaddress */
-      walletAddress: string
-      /** Createdat */
-      createdAt: string
-    }
-    /** RegisterUserSchemaIn */
-    RegisterUserSchemaIn: {
-      /** Username */
-      username: string
-    }
-    /** Input */
-    Input: {
-      /**
-       * Limit
-       * @default 100
-       */
-      limit: number
-      /**
-       * Offset
-       * @default 0
-       */
-      offset: number
-    }
-    /** PagedUserProfileSchema */
-    PagedUserProfileSchema: {
-      /** Items */
-      items: components['schemas']['UserProfileSchema'][]
-      /** Count */
-      count: number
-    }
-    /** LoginWithUserIdIn */
-    LoginWithUserIdIn: {
-      /** Id */
-      id: number
-    }
-  }
-  responses: never
-  parameters: never
-  requestBodies: never
-  headers: never
-  pathItems: never
+    schemas: {
+        /** UserProfileSchema */
+        UserProfileSchema: {
+            /** Wallets */
+            wallets: components["schemas"]["WalletSchema"][];
+            /** Pk */
+            pk: number;
+            /** Username */
+            username: string;
+            /** Neuron */
+            neuron: number;
+            /** Token */
+            token: string | null;
+            /** Refreshtoken */
+            refreshToken: string | null;
+        };
+        /** WalletSchema */
+        WalletSchema: {
+            /** Pk */
+            pk: number;
+            /** Walletaddress */
+            walletAddress: string;
+            /** Createdat */
+            createdAt: string;
+        };
+        /** RegisterUserSchemaIn */
+        RegisterUserSchemaIn: {
+            /** Username */
+            username: string;
+        };
+        /** Input */
+        Input: {
+            /**
+             * Limit
+             * @default 100
+             */
+            limit: number;
+            /**
+             * Offset
+             * @default 0
+             */
+            offset: number;
+        };
+        /** PagedUserProfileSchema */
+        PagedUserProfileSchema: {
+            /** Items */
+            items: components["schemas"]["UserProfileSchema"][];
+            /** Count */
+            count: number;
+        };
+        /** LoginWithUserIdIn */
+        LoginWithUserIdIn: {
+            /** Id */
+            id: number;
+        };
+    };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-export type $defs = Record<string, never>
+export type $defs = Record<string, never>;
 export interface operations {
-  quiz_apis_competitions_api_enroll_to_competition: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['CompetitionEnrollIn']
-      }
-    }
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['CompetitionEnrollOut']
-        }
-      }
-    }
-  }
-  quiz_apis_competitions_api_delete_competition_enroll: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        id: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-    }
-  }
-  quiz_apis_competitions_api_get_quiz: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        id: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['CompetitionWithResourceSchema']
-        }
-      }
-    }
-  }
-  quiz_apis_competitions_api_get_demo_quiz: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        id: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['DemoCompetitionWithResourceSchema']
-        }
-      }
-      /** @description Forbidden */
-      403: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': string
-        }
-      }
-    }
-  }
-  dashboard_api_register_user_register_user: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['RegisterUserSchemaIn']
-      }
-    }
-    responses: {
-      /** @description Created */
-      201: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['UserProfileSchema']
-        }
-      }
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': {
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
-  dashboard_api_register_user_get_user: {
-    parameters: {
-      query?: {
-        username?: string
-        userid?: number
-      }
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['UserProfileSchema']
-        }
-      }
-    }
-  }
-  dashboard_api_register_user_get_users_lsit: {
-    parameters: {
-      query?: {
-        limit?: number
-        offset?: number
-      }
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['PagedUserProfileSchema']
-        }
-      }
-    }
-  }
-  dashboard_api_register_user_login_user_with_username: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['RegisterUserSchemaIn']
-      }
-    }
-    responses: {
-      /** @description Created */
-      201: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['UserProfileSchema']
-        }
-      }
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': {
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
-  dashboard_api_register_user_login_user_with_user_id: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['LoginWithUserIdIn']
-      }
-    }
-    responses: {
-      /** @description Created */
-      201: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': components['schemas']['UserProfileSchema']
-        }
-      }
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': {
-            [key: string]: unknown
-          }
-        }
-      }
-    }
-  }
+    dashboard_api_register_user_register_user: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterUserSchemaIn"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserProfileSchema"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
+    dashboard_api_register_user_get_user: {
+        parameters: {
+            query?: {
+                username?: string;
+                userid?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserProfileSchema"];
+                };
+            };
+        };
+    };
+    dashboard_api_register_user_get_users_lsit: {
+        parameters: {
+            query?: {
+                limit?: number;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PagedUserProfileSchema"];
+                };
+            };
+        };
+    };
+    dashboard_api_register_user_login_user_with_username: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterUserSchemaIn"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserProfileSchema"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
+    dashboard_api_register_user_login_user_with_user_id: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginWithUserIdIn"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserProfileSchema"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
 }
