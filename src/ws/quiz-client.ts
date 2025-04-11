@@ -72,14 +72,12 @@ export class QuizWebSocketHandler {
     quiz: Omit<
       components['schemas']['CompetitionWithResourceSchema'],
       'resources'
-    >,
-    jwtToken?: string
+    >
   ) {
     this.wsClient = new WebSocketClient({
       ...wsOptions,
       url: `${witsWSUrl}/ws/quiz/${quiz.id}/`,
-      onMessage: data => this.handleMessage(data.toString()),
-      jwtToken
+      onMessage: data => this.handleMessage(data.toString())
     })
   }
 
