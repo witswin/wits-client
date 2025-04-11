@@ -36,7 +36,7 @@ export type MessageData =
       data: unknown
     }
 
-type QuestionWithoutIsCorrect = Omit<
+export type QuestionWithoutIsCorrect = Omit<
   components['schemas']['QuestionSchema'],
   'choices'
 > & {
