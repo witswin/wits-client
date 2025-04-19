@@ -1,40 +1,6 @@
-import type { Options } from 'tsup'
 import { defineConfig } from 'tsup'
-
-// const mangleErrorsTransform: Plugin = {
-//   name: mangleErrorsPlugin.name,
-//   setup(build) {
-//     const { onTransform } = getBuildExtensions(build, mangleErrorsPlugin.name)
-
-//     onTransform({ loaders: ["ts", "tsx"] }, async (args) => {
-//       try {
-//         const res = await babel.transformAsync(args.code, {
-//           parserOpts: {
-//             plugins: ["typescript"],
-//           },
-//           plugins: [
-//             [
-//               mangleErrorsPlugin,
-//               { minify: false } satisfies MangleErrorsPluginOptions,
-//             ],
-//           ],
-//         })
-
-//         if (res == null) {
-//           throw new Error("Babel transformAsync returned null")
-//         }
-
-//         return {
-//           code: res.code!,
-//           map: res.map!,
-//         }
-//       } catch (err) {
-//         console.error("Babel mangleErrors error: ", err)
-//         return null
-//       }
-//     })
-//   },
-// }
+import type { Options } from 'tsup'
+import type { Plugin, PluginBuild } from 'esbuild'
 
 export default defineConfig((options): Options[] => {
   const commonOptions: Options = {
@@ -52,21 +18,29 @@ export default defineConfig((options): Options[] => {
   }
 
   return [
+    // ESM build for general use
     {
       ...commonOptions,
       format: ['esm'],
       outExtension: () => ({ js: '.mjs' }),
       dts: true,
-      clean: true
+      clean: true,
+      define: {
+        'process.env.NODE_ENV': JSON.stringify('production')
+      },
+      external: ['events'] // Exclude 'events' from Node.js builds
     },
+    // ESM build for legacy support
     {
       ...commonOptions,
       format: ['esm'],
       target: ['es2017'],
       dts: false,
       outExtension: () => ({ js: '.js' }),
-      entry: { 'wits-client.legacy-esm': 'src/index.ts' }
+      entry: { 'wits-client.legacy-esm': 'src/index.ts' },
+      external: ['events'] // Exclude 'events' from Node.js builds
     },
+    // Browser-specific bundle with polyfill for 'events'
     {
       ...commonOptions,
       entry: {
@@ -77,13 +51,26 @@ export default defineConfig((options): Options[] => {
       },
       format: ['esm'],
       outExtension: () => ({ js: '.mjs' }),
-      minify: true
+      minify: true,
+      external: ['events'], // Externalize 'events'
+      plugins: [
+        {
+          name: 'polyfill-events',
+          setup(build: PluginBuild) {
+            build.onResolve({ filter: /^events$/ }, () => {
+              return { path: require.resolve('events') } // Polyfill events
+            })
+          }
+        } as Plugin // Correctly typed plugin
+      ]
     },
+    // CommonJS build (for Node.js usage)
     {
       ...commonOptions,
       format: ['cjs'],
       outDir: './dist/cjs/',
-      outExtension: () => ({ js: '.cjs' })
+      outExtension: () => ({ js: '.cjs' }),
+      external: ['events'] // Exclude 'events' from Node.js builds
     }
   ]
 })
