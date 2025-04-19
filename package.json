@@ -1,6 +1,6 @@
 {
   "name": "wits-client",
-  "version": "0.2.1",
+  "version": "0.2.6",
   "description": "A client for using wits.win apis",
   "license": "MIT",
   "homepage": "https://wits.win",
@@ -19,41 +19,14 @@
     "dist",
     "src"
   ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/wits-client.mjs",
-      "require": "./dist/cjs/wits-client.cjs",
-      "types": "./dist/wits-client.d.ts"
-    },
-    "./api-client-v1": {
-      "import": "./dist/api-client-v1.mjs",
-      "require": "./dist/cjs/api-client-v1.cjs",
-      "types": "./dist/api-client-v1.d.ts"
-    },
-    "./api-client-v2": {
-      "import": "./dist/api-client-v2.mjs",
-      "require": "./dist/cjs/api-client-v2.cjs",
-      "types": "./dist/api-client-v2.d.ts"
-    },
-    "./api-dashboard": {
-      "import": "./dist/api-dashboard.mjs",
-      "require": "./dist/cjs/api-dashboard.cjs",
-      "types": "./dist/api-dashboard.d.ts"
-    },
-    "./config": {
-      "import": "./dist/config.mjs",
-      "require": "./dist/cjs/config.cjs",
-      "types": "./dist/config.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/cjs/utils.cjs",
-      "types": "./dist/utils.d.ts"
-    },
-    "./ws": {
-      "import": "./dist/ws.mjs",
-      "require": "./dist/cjs/ws.cjs",
-      "types": "./dist/ws.d.ts"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
@@ -66,15 +39,11 @@
     "create-types:user-v2": "openapi-typescript ./client-v2-apis.json -o src/api-client-v2.d.ts",
     "create-types:dashboard": "openapi-typescript ./wits-dashboard-api.json -o src/api-dashboard.d.ts",
     "create-types": "bun create-types:user && bun create-types:dashboard && bun create-types:user-v2",
-    "prepublishOnly": "bun clean && bun format:check && bun lint && bun test",
+    "prepublishOnly": "bun clean && bun format:check && bun run build && bun lint && bun test",
     "prepack": "bun run build",
     "examples:lint": "eslint --ext js,ts examples",
     "tsc": "tsc"
   },
-  "main": "./dist/cjs/wits-client.cjs",
-  "module": "./dist/wits-client.mjs",
-  "types": "./dist/wits-client.d.ts",
-  "type": "module",
   "dependencies": {
     "openapi-fetch": "^0.13.5"
   },
@@ -89,6 +58,7 @@
     "@typescript-eslint/parser": "^7.3.1",
     "cross-env": "^7.0.3",
     "esbuild-extra": "^0.3.1",
+    "esbuild-plugins-node-modules-polyfill": "^1.7.0",
     "eslint": "^9.24.0",
     "glob": "^10.3.10",
     "globals": "^16.0.0",
@@ -96,11 +66,9 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "8.0.2",
+    "typescript": "^5",
     "typescript-eslint": "^8.29.1",
     "vitest": "^2.0.5",
     "ws": "^8.18.1"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }

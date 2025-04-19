@@ -1,14 +1,16 @@
-import { WebSocket, type Data, type MessageEvent } from 'ws'
+// Define a generic Data type for messages
+export type WebSocketData = string | object | ArrayBuffer | Blob
 
+// Interface for WebSocketOptions
 export interface WebSocketOptions {
   url: string
   reconnect?: boolean
   pingInterval?: number // in milliseconds
   jwtToken?: string
   onOpen?: () => void
-  onMessage?: (data: Data) => void
-  onError?: (error: Event) => void
-  onClose?: (event: CloseEvent) => void
+  onMessage?: (data: WebSocketData) => void
+  onError?: (error: Event | Error) => void // Support both browser and Node.js error types
+  onClose?: (event: CloseEvent | { code?: number; reason?: string }) => void // Support both browser and Node.js close events
 }
 
 export enum QuizEntryMessageType {
@@ -30,20 +32,24 @@ export class WebSocketClient {
   private url: string
   private reconnect: boolean
   private pingInterval: number
-  private pingTimer: NodeJS.Timeout | null = null
+  private pingTimer: ReturnType<typeof setInterval> | null = null // Use generic timer type
   private lastPing: Date | null = null
   private status: WebSocketStatus = { ping: 0, isConnected: false }
 
   // Callbacks
   private onOpenCallback?: () => void
-  private onMessageCallback?: (data: Data) => void
-  private onErrorCallback?: (error: Event) => void
-  private onCloseCallback?: (event: CloseEvent) => void
+  private onMessageCallback?: (data: WebSocketData) => void
+  private onErrorCallback?: (error: Event | Error) => void
+  private onCloseCallback?: (
+    event: CloseEvent | { code?: number; reason?: string }
+  ) => void
 
   constructor(options: WebSocketOptions) {
     this.url = options.url
 
-    if (options.jwtToken) this.url += '?auth=' + options.jwtToken
+    if (options.jwtToken) {
+      this.url += `?auth=${encodeURIComponent(options.jwtToken)}`
+    }
 
     this.reconnect = options.reconnect ?? true
     this.pingInterval = options.pingInterval ?? 3000
@@ -73,25 +79,39 @@ export class WebSocketClient {
     }
 
     this.ws.onmessage = (event: MessageEvent) => {
-      const data = event.data
-      if (data === QuizEntryMessageType.PONG) {
-        const now = new Date()
-        const timePassed = this.lastPing
-          ? now.getTime() - this.lastPing.getTime()
-          : -1
-        this.status.ping = timePassed
-        this.lastPing = now
+      let data: WebSocketData = event.data
+
+      // Handle JSON messages
+      if (typeof data === 'string') {
+        try {
+          if (data === QuizEntryMessageType.PONG) {
+            const now = new Date()
+            const timePassed = this.lastPing
+              ? now.getTime() - this.lastPing.getTime()
+              : -1
+            this.status.ping = timePassed
+            this.lastPing = now
+          } else if (data.startsWith('{') || data.startsWith('[')) {
+            // Attempt to parse JSON
+            data = JSON.parse(data)
+          }
+        } catch (error) {
+          console.warn('Failed to parse WebSocket message:', error)
+        }
       }
+
       this.onMessageCallback?.(data)
     }
 
-    this.ws.onerror = (error: Event) => {
+    this.ws.onerror = (error: Event | Error) => {
       console.warn('WebSocket error:', error)
       this.status.isConnected = false
       this.onErrorCallback?.(error)
     }
 
-    this.ws.onclose = (event: CloseEvent) => {
+    this.ws.onclose = (
+      event: CloseEvent | { code?: number; reason?: string }
+    ) => {
       console.log('WebSocket closed:', event)
       this.status.isConnected = false
       this.stopPing()
@@ -112,8 +132,14 @@ export class WebSocketClient {
     }
   }
 
+  // Send a JSON-serializable message
   public sendJSONMessage(message: unknown): void {
-    return this.sendJSONMessage(JSON.stringify(message))
+    try {
+      const serialized = JSON.stringify(message)
+      this.sendMessage(serialized)
+    } catch (error) {
+      console.warn('Failed to serialize JSON message:', error)
+    }
   }
 
   // Get current status (ping, connection state)
@@ -133,11 +159,11 @@ export class WebSocketClient {
   // Private method to handle ping/pong
   private startPing(): void {
     this.stopPing() // Clear any existing timer
-    this.sendMessage(JSON.stringify({ command: 'PING' }))
+    this.sendJSONMessage({ command: 'PING' })
     this.pingTimer = setInterval(() => {
       try {
         this.lastPing = new Date()
-        this.sendMessage(JSON.stringify({ command: 'PING' }))
+        this.sendJSONMessage({ command: 'PING' })
       } catch (error) {
         console.warn('Ping error:', error)
         this.stopPing()
