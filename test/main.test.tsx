@@ -13,7 +13,7 @@ describe('Client API', () => {
   })
 
   it('should be able to ping the api', async () => {
-    const { data, error } = await clientApi.GET('/stats/total/', {})
+    const { data, error } = await clientApi.GET('/v2/health-check', {})
 
     expect(data).not.toBe(null)
     expect(error).toBeEmpty()

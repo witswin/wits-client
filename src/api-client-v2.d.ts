@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+  '/v2/health-check': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Health Check */
+    get: operations['witswin_api_health_check']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/v2/quiz/competitions/{id}/check-referral-code/': {
     parameters: {
       query?: never
@@ -38,7 +55,7 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  '/v2/quiz/competitions/enroll/{id}': {
+  '/v2/quiz/competitions/enroll/{id}/': {
     parameters: {
       query?: never
       header?: never
@@ -106,6 +123,23 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/v2/quiz/competitions/sandbox/{competition_id}/reset/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Reset Sandbox Competition */
+    get: operations['quiz_apis_competition_sandbox_api_reset_sandbox_competition']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/v2/auth/telegram-login/': {
     parameters: {
       query?: never
@@ -146,6 +180,23 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/v2/auth/sandbox/create-dummy/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Create Dummy User */
+    get: operations['authentication_api_user_sandbox_api_create_dummy_user']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -154,29 +205,6 @@ export interface components {
     ReferralValidateSchema: {
       /** Referralcode */
       referralCode: string
-    }
-    /** CompetitionEnrollOut */
-    CompetitionEnrollOut: {
-      /** Id */
-      id: number
-      /** Registeredhints */
-      registeredHints: number[]
-      /** Userid */
-      userId: number
-      /** Iswinner */
-      isWinner: boolean
-      /** Amountwon */
-      amountWon: string
-      /** Hintcount */
-      hintCount: number
-      /** Txhash */
-      txHash: string | null
-      /** Lives */
-      lives: number
-      /** Userprofile */
-      userProfile: number
-      /** Competition */
-      competition: number
     }
     /** CompetitionEnrollIn */
     CompetitionEnrollIn: {
@@ -224,6 +252,8 @@ export interface components {
       allowedHintTypes: components['schemas']['HintSchema'][]
       /** Formattedprize */
       formattedPrize: number | string
+      /** Constraints */
+      constraints: components['schemas']['ConstraintSchema'][]
       /** ID */
       id?: number | null
       /** Title */
@@ -304,6 +334,11 @@ export interface components {
        */
       isActive: boolean
       /**
+       * Is Sandbox
+       * @default false
+       */
+      isSandbox: boolean
+      /**
        * Is Testnet
        * @default false
        */
@@ -339,10 +374,27 @@ export interface components {
       apiResponse?: string | null
       /** Api Error Response */
       apiErrorResponse?: string | null
-      /** Constraints */
-      constraints: number[]
       /** Resources */
       resources: components['schemas']['ResourceSchema'][]
+    }
+    /** ConstraintSchema */
+    ConstraintSchema: {
+      /** Name */
+      name: string
+      /** Title */
+      title: string
+      /** Type */
+      type: string
+      /** Description */
+      description: string | null
+      /** Negativedescription */
+      negativeDescription: string | null
+      /** Response */
+      response: string | null
+      /** Iconurl */
+      iconUrl: string | null
+      /** Explaination */
+      explaination: string | null
     }
     /** HintSchema */
     HintSchema: {
@@ -433,6 +485,8 @@ export interface components {
       allowedHintTypes: components['schemas']['HintSchema'][]
       /** Formattedprize */
       formattedPrize: number | string
+      /** Constraints */
+      constraints: components['schemas']['ConstraintSchema'][]
       /** ID */
       id?: number | null
       /** Title */
@@ -513,6 +567,11 @@ export interface components {
        */
       isActive: boolean
       /**
+       * Is Sandbox
+       * @default false
+       */
+      isSandbox: boolean
+      /**
        * Is Testnet
        * @default false
        */
@@ -548,8 +607,6 @@ export interface components {
       apiResponse?: string | null
       /** Api Error Response */
       apiErrorResponse?: string | null
-      /** Constraints */
-      constraints: number[]
     }
     /** ChoiceSchema */
     ChoiceSchema: {
@@ -584,6 +641,8 @@ export interface components {
       allowedHintTypes: components['schemas']['HintSchema'][]
       /** Formattedprize */
       formattedPrize: number | string
+      /** Constraints */
+      constraints: components['schemas']['ConstraintSchema'][]
       /** ID */
       id?: number | null
       /** Title */
@@ -664,6 +723,11 @@ export interface components {
        */
       isActive: boolean
       /**
+       * Is Sandbox
+       * @default false
+       */
+      isSandbox: boolean
+      /**
        * Is Testnet
        * @default false
        */
@@ -699,8 +763,6 @@ export interface components {
       apiResponse?: string | null
       /** Api Error Response */
       apiErrorResponse?: string | null
-      /** Constraints */
-      constraints: number[]
       /** Resources */
       resources: components['schemas']['ResourceSchema'][]
     }
@@ -785,6 +847,26 @@ export interface components {
 }
 export type $defs = Record<string, never>
 export interface operations {
+  witswin_api_health_check: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': string
+        }
+      }
+    }
+  }
   quiz_apis_competitions_api_check_referral_code: {
     parameters: {
       query?: never
@@ -837,7 +919,18 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          'application/json': components['schemas']['CompetitionEnrollOut']
+          'application/json': string
+        }
+      }
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }
         }
       }
     }
@@ -935,6 +1028,30 @@ export interface operations {
       }
     }
   }
+  quiz_apis_competition_sandbox_api_reset_sandbox_competition: {
+    parameters: {
+      query?: {
+        minutes?: number
+        seconds?: number
+        hours?: number
+      }
+      header?: never
+      path: {
+        competition_id: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
   authentication_api_telegram_login_api_telegram_auth_mini_app: {
     parameters: {
       query?: never
@@ -971,6 +1088,26 @@ export interface operations {
         'application/json': components['schemas']['TelegramWidgetIn']
       }
     }
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['UserProfileSchema']
+        }
+      }
+    }
+  }
+  authentication_api_user_sandbox_api_create_dummy_user: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
     responses: {
       /** @description OK */
       200: {
