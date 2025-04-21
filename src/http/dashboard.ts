@@ -2,6 +2,7 @@ import crypto from 'crypto'
 import createClient, { type Middleware } from 'openapi-fetch'
 import type { paths } from '../api-dashboard'
 import { witsApiUrl } from '../config'
+import { errorHandlingMiddleware } from './errors'
 
 const generateNonce = () => {
   const array = new Uint8Array(16)
@@ -65,6 +66,7 @@ export const createDashboardAPI = ({
   }
 
   client.use(privateKeySignAuthenticationMiddleware)
+  client.use(errorHandlingMiddleware)
 
   return client
 }

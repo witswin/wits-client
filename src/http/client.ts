@@ -2,6 +2,7 @@ import createClient, { type Middleware } from 'openapi-fetch'
 import type { paths } from '../api-client-v1'
 import type { paths as v2Paths } from '../api-client-v2'
 import { witsApiUrl } from '../config'
+import { errorHandlingMiddleware } from './errors'
 
 export const createClientAPI = ({
   appId,
@@ -22,6 +23,7 @@ export const createClientAPI = ({
   }
 
   client.use(jwtAuthenticationMiddleware)
+  client.use(errorHandlingMiddleware)
 
   return client
 }

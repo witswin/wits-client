@@ -1,3 +1,5 @@
+import type { Middleware } from 'openapi-fetch'
+
 export class APIError extends Error {
   public readonly status: number
   public readonly details: unknown
@@ -22,5 +24,14 @@ export class APIError extends Error {
     }
 
     return new APIError(res.status, message, details)
+  }
+}
+
+export const errorHandlingMiddleware: Middleware = {
+  async onResponse({ response }) {
+    if (!response.ok) {
+      throw await APIError.fromResponse(response)
+    }
+    return response
   }
 }
