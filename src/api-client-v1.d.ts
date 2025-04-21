@@ -140,6 +140,40 @@ export interface paths {
     patch: operations['auth_info_partial_update']
     trace?: never
   }
+  '/auth/telegram-login/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description login with telegram through mini app */
+    post: operations['auth_telegram_login_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/auth/telegram-widget-login/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** @description login with telegram through web with telegram login widget */
+    post: operations['auth_telegram_widget_login_create']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/auth/telegram/private/': {
     parameters: {
       query?: never
@@ -497,6 +531,23 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/quiz/competition/{competition_pk}/check-constraint/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** @description check if user can pass a competition's requirements or not */
+    get: operations['quiz_competition_check_constraint_list']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/quiz/competition/{id}/qr-code/': {
     parameters: {
       query?: never
@@ -620,7 +671,7 @@ export interface paths {
     patch: operations['quiz_competitions_enroll_partial_update']
     trace?: never
   }
-  '/quiz/competitions/latest': {
+  '/quiz/competitions/latest/': {
     parameters: {
       query?: never
       header?: never
@@ -744,26 +795,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  '/quiz/sandbox/{competition_id}/reset/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
-     *     and delete related UserCompetition and UserAnswer data. */
-    get: operations['quiz_sandbox_reset_retrieve']
-    put?: never
-    /** @description An API endpoint to reset a quiz, update the `start_at` time based on the query parameter,
-     *     and delete related UserCompetition and UserAnswer data. */
-    post: operations['quiz_sandbox_reset_create']
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   '/quiz/user-hints/': {
     parameters: {
       query?: never
@@ -872,6 +903,7 @@ export interface components {
       txHash?: string | null
       isDemo?: boolean
       isActive?: boolean
+      isSandbox?: boolean
       isTestnet?: boolean
       lives?: number
       hintCount?: number
@@ -959,6 +991,7 @@ export interface components {
       txHash?: string | null
       isDemo?: boolean
       isActive?: boolean
+      isSandbox?: boolean
       isTestnet?: boolean
       lives?: number
       hintCount?: number
@@ -1164,6 +1197,33 @@ export interface components {
       description?: string | null
       /** Format: uri */
       image?: string | null
+    }
+    TelegramAuth: {
+      telegramData: string
+    }
+    TelegramWidget: {
+      id: number
+      hash: string
+      firstName: string
+      lastName?: string
+      username?: string
+      /** Format: date-time */
+      readonly createdAt: string
+      phoneNumber?: string | null
+      isPrivate?: boolean
+      isPremiumData?: boolean | null
+      /** Format: date-time */
+      isPremiumLastEval?: string | null
+      /** Format: double */
+      locationLatitude?: number | null
+      /** Format: double */
+      locationLongitude?: number | null
+      /** Format: date-time */
+      locationLastUpdate?: string | null
+      bio?: string | null
+      /** Format: date */
+      birthDate?: string | null
+      readonly userProfile: number
     }
     UserAnswer: {
       readonly id: number
@@ -1614,6 +1674,56 @@ export interface operations {
         }
         content: {
           'application/json': components['schemas']['UserProfile']
+        }
+      }
+    }
+  }
+  auth_telegram_login_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['TelegramAuth']
+        'multipart/form-data': components['schemas']['TelegramAuth']
+        'application/json': components['schemas']['TelegramAuth']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['TelegramAuth']
+        }
+      }
+    }
+  }
+  auth_telegram_widget_login_create: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/x-www-form-urlencoded': components['schemas']['TelegramWidget']
+        'multipart/form-data': components['schemas']['TelegramWidget']
+        'application/json': components['schemas']['TelegramWidget']
+      }
+    }
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['TelegramWidget']
         }
       }
     }
@@ -2373,6 +2483,42 @@ export interface operations {
       }
     }
   }
+  quiz_competition_check_constraint_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competitionPk: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description User can pass the constrints */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+          }[]
+        }
+      }
+      /** @description User can't pass the constrints */
+      404: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            message?: string
+            errors?: Record<string, never>
+          }
+        }
+      }
+    }
+  }
   quiz_competition_qr_code_retrieve: {
     parameters: {
       query?: never
@@ -2919,46 +3065,6 @@ export interface operations {
         content: {
           'application/json': components['schemas']['ResourceWithCompetitionSerialzier'][]
         }
-      }
-    }
-  }
-  quiz_sandbox_reset_retrieve: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        competitionId: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description No response body */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-    }
-  }
-  quiz_sandbox_reset_create: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        competitionId: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description No response body */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
       }
     }
   }
