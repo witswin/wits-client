@@ -188,7 +188,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/CompetitionSchema"
+                    "$ref": "#/components/schemas/CompetitionWithResourceSchema"
                   },
                   "title": "Response",
                   "type": "array"
@@ -239,6 +239,67 @@
           }
         },
         "tags": ["Quiz Management"]
+      }
+    },
+    "/v2/quiz/competitions/{competition_pk}/check-constraints/": {
+      "post": {
+        "operationId": "quiz_apis_competitions_api_check_requirement_api",
+        "summary": "Check Requirement Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "competition_pk",
+            "schema": {
+              "title": "Competition Pk",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Quiz Management"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompetitionCheckConstraintSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "NinjaJWTAuth": []
+          }
+        ]
       }
     },
     "/v2/quiz/competitions/sandbox/{competition_id}/reset/": {
@@ -936,16 +997,7 @@
             "title": "Explaination"
           }
         },
-        "required": [
-          "name",
-          "title",
-          "type",
-          "description",
-          "negativeDescription",
-          "response",
-          "iconUrl",
-          "explaination"
-        ],
+        "required": ["name", "title", "type"],
         "title": "ConstraintSchema",
         "type": "object"
       },
@@ -1147,402 +1199,6 @@
         },
         "required": ["name", "link"],
         "title": "SponsorSchema",
-        "type": "object"
-      },
-      "CompetitionSchema": {
-        "properties": {
-          "questions": {
-            "items": {
-              "$ref": "#/components/schemas/SmallQuestionSchema"
-            },
-            "title": "Questions",
-            "type": "array"
-          },
-          "sponsors": {
-            "items": {
-              "$ref": "#/components/schemas/SponsorSchema"
-            },
-            "title": "Sponsors",
-            "type": "array"
-          },
-          "participantsCount": {
-            "title": "Participantscount",
-            "type": "integer"
-          },
-          "userProfile": {
-            "title": "Userprofile",
-            "type": "integer"
-          },
-          "builtInHints": {
-            "items": {
-              "$ref": "#/components/schemas/CompetitionHintSchema"
-            },
-            "title": "Builtinhints",
-            "type": "array"
-          },
-          "isFinished": {
-            "title": "Isfinished",
-            "type": "boolean"
-          },
-          "isVip": {
-            "title": "Isvip",
-            "type": "boolean"
-          },
-          "prizeAmount": {
-            "title": "Prizeamount",
-            "type": "integer"
-          },
-          "allowedHintTypes": {
-            "items": {
-              "$ref": "#/components/schemas/HintSchema"
-            },
-            "title": "Allowedhinttypes",
-            "type": "array"
-          },
-          "formattedPrize": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "title": "Formattedprize"
-          },
-          "constraints": {
-            "items": {
-              "$ref": "#/components/schemas/ConstraintSchema"
-            },
-            "title": "Constraints",
-            "type": "array"
-          },
-          "id": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "ID"
-          },
-          "title": {
-            "maxLength": 255,
-            "title": "Title",
-            "type": "string"
-          },
-          "details": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Details"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "title": "Created At",
-            "type": "string"
-          },
-          "startAt": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Start At"
-          },
-          "chainId": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Chain Id"
-          },
-          "language": {
-            "default": "en",
-            "maxLength": 10,
-            "title": "Language",
-            "type": "string"
-          },
-          "tokenDecimals": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": 18,
-            "title": "Token Decimals"
-          },
-          "token": {
-            "anyOf": [
-              {
-                "maxLength": 100,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Token"
-          },
-          "tokenAddress": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Token Address"
-          },
-          "discordUrl": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Discord Url"
-          },
-          "twitterUrl": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Twitter Url"
-          },
-          "emailUrl": {
-            "maxLength": 255,
-            "title": "Email Url",
-            "type": "string"
-          },
-          "telegramUrl": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Telegram Url"
-          },
-          "tokenImage": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Token Image"
-          },
-          "image": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Image"
-          },
-          "shuffleAnswers": {
-            "default": false,
-            "title": "Shuffle Answers",
-            "type": "boolean"
-          },
-          "splitPrize": {
-            "default": true,
-            "title": "Split Prize",
-            "type": "boolean"
-          },
-          "maxParticipants": {
-            "default": 0,
-            "title": "Max Participants",
-            "type": "integer"
-          },
-          "isWinnersAnnounced": {
-            "default": false,
-            "title": "Is Winners Announced",
-            "type": "boolean"
-          },
-          "constraintParams": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Constraint Params"
-          },
-          "reversedConstraints": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Reversed Constraints"
-          },
-          "referralCode": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Referral Code"
-          },
-          "txHash": {
-            "anyOf": [
-              {
-                "maxLength": 1000,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Tx Hash"
-          },
-          "isDemo": {
-            "default": false,
-            "title": "Is Demo",
-            "type": "boolean"
-          },
-          "isActive": {
-            "default": true,
-            "title": "Is Active",
-            "type": "boolean"
-          },
-          "isSandbox": {
-            "default": false,
-            "title": "Is Sandbox",
-            "type": "boolean"
-          },
-          "isTestnet": {
-            "default": false,
-            "title": "Is Testnet",
-            "type": "boolean"
-          },
-          "lives": {
-            "default": 1,
-            "title": "Lives",
-            "type": "integer"
-          },
-          "hintCount": {
-            "default": 1,
-            "title": "Hint Count",
-            "type": "integer"
-          },
-          "questionTimeSeconds": {
-            "default": 14,
-            "title": "Question Time Seconds",
-            "type": "integer"
-          },
-          "questionHintTimeSeconds": {
-            "default": 4,
-            "title": "Question Hint Time Seconds",
-            "type": "integer"
-          },
-          "restTimeSeconds": {
-            "default": 9,
-            "title": "Rest Time Seconds",
-            "type": "integer"
-          },
-          "announceWinnersApiUrl": {
-            "anyOf": [
-              {
-                "maxLength": 255,
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Announce Winners Api Url"
-          },
-          "apiResponse": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Api Response"
-          },
-          "apiErrorResponse": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Api Error Response"
-          }
-        },
-        "required": [
-          "questions",
-          "sponsors",
-          "participantsCount",
-          "userProfile",
-          "builtInHints",
-          "isFinished",
-          "isVip",
-          "prizeAmount",
-          "allowedHintTypes",
-          "formattedPrize",
-          "constraints",
-          "title",
-          "createdAt",
-          "emailUrl"
-        ],
-        "title": "CompetitionSchema",
         "type": "object"
       },
       "ChoiceSchema": {
@@ -2028,6 +1684,25 @@
         },
         "required": ["choices", "competition", "number", "text"],
         "title": "QuestionSchema",
+        "type": "object"
+      },
+      "CompetitionCheckConstraintSchema": {
+        "properties": {
+          "competitionData": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Competitiondata"
+          }
+        },
+        "required": ["competitionData"],
+        "title": "CompetitionCheckConstraintSchema",
         "type": "object"
       },
       "UserProfileSchema": {

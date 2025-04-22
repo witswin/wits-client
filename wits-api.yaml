@@ -1171,44 +1171,6 @@ paths:
                   error:
                     type: string
           description: invalid request
-  /quiz/competition/{competition_pk}/check-constraint/:
-    get:
-      operationId: quiz_competition_check_constraint_list
-      description: check if user can pass a competition's requirements or not
-      parameters:
-      - in: path
-        name: competitionPk
-        schema:
-          type: integer
-        required: true
-      tags:
-      - quiz
-      security:
-      - tokenAuth: []
-      - jwtAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-          description: User can pass the constrints
-        '404':
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  errors:
-                    type: object
-          description: User can't pass the constrints
   /quiz/competition/{id}/qr-code/:
     get:
       operationId: quiz_competition_qr_code_retrieve

@@ -123,6 +123,23 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/v2/quiz/competitions/{competition_pk}/check-constraints/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Check Requirement Api */
+    post: operations['quiz_apis_competitions_api_check_requirement_api']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/v2/quiz/competitions/sandbox/{competition_id}/reset/': {
     parameters: {
       query?: never
@@ -386,15 +403,15 @@ export interface components {
       /** Type */
       type: string
       /** Description */
-      description: string | null
+      description?: string | null
       /** Negativedescription */
-      negativeDescription: string | null
+      negativeDescription?: string | null
       /** Response */
-      response: string | null
+      response?: string | null
       /** Iconurl */
-      iconUrl: string | null
+      iconUrl?: string | null
       /** Explaination */
-      explaination: string | null
+      explaination?: string | null
     }
     /** HintSchema */
     HintSchema: {
@@ -462,151 +479,6 @@ export interface components {
       description?: string | null
       /** Image */
       image?: string | null
-    }
-    /** CompetitionSchema */
-    CompetitionSchema: {
-      /** Questions */
-      questions: components['schemas']['SmallQuestionSchema'][]
-      /** Sponsors */
-      sponsors: components['schemas']['SponsorSchema'][]
-      /** Participantscount */
-      participantsCount: number
-      /** Userprofile */
-      userProfile: number
-      /** Builtinhints */
-      builtInHints: components['schemas']['CompetitionHintSchema'][]
-      /** Isfinished */
-      isFinished: boolean
-      /** Isvip */
-      isVip: boolean
-      /** Prizeamount */
-      prizeAmount: number
-      /** Allowedhinttypes */
-      allowedHintTypes: components['schemas']['HintSchema'][]
-      /** Formattedprize */
-      formattedPrize: number | string
-      /** Constraints */
-      constraints: components['schemas']['ConstraintSchema'][]
-      /** ID */
-      id?: number | null
-      /** Title */
-      title: string
-      /** Details */
-      details?: string | null
-      /**
-       * Created At
-       * Format: date-time
-       */
-      createdAt: string
-      /** Start At */
-      startAt?: string | null
-      /** Chain Id */
-      chainId?: number | null
-      /**
-       * Language
-       * @default en
-       */
-      language: string
-      /**
-       * Token Decimals
-       * @default 18
-       */
-      tokenDecimals: number | null
-      /** Token */
-      token?: string | null
-      /** Token Address */
-      tokenAddress?: string | null
-      /** Discord Url */
-      discordUrl?: string | null
-      /** Twitter Url */
-      twitterUrl?: string | null
-      /** Email Url */
-      emailUrl: string
-      /** Telegram Url */
-      telegramUrl?: string | null
-      /** Token Image */
-      tokenImage?: string | null
-      /** Image */
-      image?: string | null
-      /**
-       * Shuffle Answers
-       * @default false
-       */
-      shuffleAnswers: boolean
-      /**
-       * Split Prize
-       * @default true
-       */
-      splitPrize: boolean
-      /**
-       * Max Participants
-       * @default 0
-       */
-      maxParticipants: number
-      /**
-       * Is Winners Announced
-       * @default false
-       */
-      isWinnersAnnounced: boolean
-      /** Constraint Params */
-      constraintParams?: string | null
-      /** Reversed Constraints */
-      reversedConstraints?: string | null
-      /** Referral Code */
-      referralCode?: string | null
-      /** Tx Hash */
-      txHash?: string | null
-      /**
-       * Is Demo
-       * @default false
-       */
-      isDemo: boolean
-      /**
-       * Is Active
-       * @default true
-       */
-      isActive: boolean
-      /**
-       * Is Sandbox
-       * @default false
-       */
-      isSandbox: boolean
-      /**
-       * Is Testnet
-       * @default false
-       */
-      isTestnet: boolean
-      /**
-       * Lives
-       * @default 1
-       */
-      lives: number
-      /**
-       * Hint Count
-       * @default 1
-       */
-      hintCount: number
-      /**
-       * Question Time Seconds
-       * @default 14
-       */
-      questionTimeSeconds: number
-      /**
-       * Question Hint Time Seconds
-       * @default 4
-       */
-      questionHintTimeSeconds: number
-      /**
-       * Rest Time Seconds
-       * @default 9
-       */
-      restTimeSeconds: number
-      /** Announce Winners Api Url */
-      announceWinnersApiUrl?: string | null
-      /** Api Response */
-      apiResponse?: string | null
-      /** Api Error Response */
-      apiErrorResponse?: string | null
     }
     /** ChoiceSchema */
     ChoiceSchema: {
@@ -783,6 +655,13 @@ export interface components {
        * @default Wits Team
        */
       creator: string
+    }
+    /** CompetitionCheckConstraintSchema */
+    CompetitionCheckConstraintSchema: {
+      /** Competitiondata */
+      competitionData: {
+        [key: string]: unknown
+      } | null
     }
     /** UserProfileSchema */
     UserProfileSchema: {
@@ -992,7 +871,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          'application/json': components['schemas']['CompetitionSchema'][]
+          'application/json': components['schemas']['CompetitionWithResourceSchema'][]
         }
       }
     }
@@ -1024,6 +903,45 @@ export interface operations {
         }
         content: {
           'application/json': string
+        }
+      }
+    }
+  }
+  quiz_apis_competitions_api_check_requirement_api: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competition_pk: number
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CompetitionCheckConstraintSchema']
+      }
+    }
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: string
+          }
+        }
+      }
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': {
+            [key: string]: unknown
+          }
         }
       }
     }

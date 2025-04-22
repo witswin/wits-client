@@ -531,23 +531,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  '/quiz/competition/{competition_pk}/check-constraint/': {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** @description check if user can pass a competition's requirements or not */
-    get: operations['quiz_competition_check_constraint_list']
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   '/quiz/competition/{id}/qr-code/': {
     parameters: {
       query?: never
@@ -2478,42 +2461,6 @@ export interface operations {
         content: {
           'application/json': {
             error?: string
-          }
-        }
-      }
-    }
-  }
-  quiz_competition_check_constraint_list: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        competitionPk: number
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description User can pass the constrints */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': {
-            message?: string
-          }[]
-        }
-      }
-      /** @description User can't pass the constrints */
-      404: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          'application/json': {
-            message?: string
-            errors?: Record<string, never>
           }
         }
       }
