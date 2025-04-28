@@ -1,5 +1,5 @@
 import { defineConfig } from 'tsup'
-import { nodeModulesPolyfillPlugin } from 'esbuild-plugins-node-modules-polyfill'
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -10,5 +10,6 @@ export default defineConfig({
   clean: true,
   minify: false,
   // @ts-ignore
-  esbuildPlugins: [nodeModulesPolyfillPlugin({})]
+  esbuildPlugins: [NodeModulesPolyfillPlugin({})],
+  external: ['process']
 })
