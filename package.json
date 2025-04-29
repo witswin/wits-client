@@ -1,6 +1,6 @@
 {
   "name": "wits-client",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A client for using wits.win apis",
   "license": "MIT",
   "homepage": "https://wits.win",

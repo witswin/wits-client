@@ -45,7 +45,8 @@ export interface paths {
       path?: never
       cookie?: never
     }
-    get?: never
+    /** User Competitions */
+    get: operations['quiz_apis_competitions_api_user_competitions']
     put?: never
     /** Enroll To Competition */
     post: operations['quiz_apis_competitions_api_enroll_to_competition']
@@ -157,6 +158,41 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  '/v2/dashboard/competitions/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get All Competitions List */
+    get: operations['dashboard_api_competition_dashboard_api_get_all_competitions_list']
+    put?: never
+    /** Create Competition */
+    post: operations['dashboard_api_competition_dashboard_api_create_competition']
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  '/v2/dashboard/competitions/{competition_pk}/': {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Competition */
+    get: operations['dashboard_api_competition_dashboard_api_get_competition']
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   '/v2/auth/telegram-login/': {
     parameters: {
       query?: never
@@ -222,6 +258,29 @@ export interface components {
     ReferralValidateSchema: {
       /** Referralcode */
       referralCode: string
+    }
+    /** CompetitionEnrollOut */
+    CompetitionEnrollOut: {
+      /** Id */
+      id: number
+      /** Registeredhints */
+      registeredHints: number[]
+      /** Userid */
+      userId: number
+      /** Iswinner */
+      isWinner: boolean
+      /** Amountwon */
+      amountWon: string
+      /** Hintcount */
+      hintCount: number
+      /** Txhash */
+      txHash: string | null
+      /** Lives */
+      lives: number
+      /** Userprofile */
+      userProfile: number
+      /** Competition */
+      competition: number
     }
     /** CompetitionEnrollIn */
     CompetitionEnrollIn: {
@@ -663,6 +722,315 @@ export interface components {
         [key: string]: unknown
       } | null
     }
+    /** CompetitionSchema */
+    CompetitionSchema: {
+      /** Questions */
+      questions: components['schemas']['SmallQuestionSchema'][]
+      /** Sponsors */
+      sponsors: components['schemas']['SponsorSchema'][]
+      /** Participantscount */
+      participantsCount: number
+      /** Userprofile */
+      userProfile: number
+      /** Builtinhints */
+      builtInHints: components['schemas']['CompetitionHintSchema'][]
+      /** Isfinished */
+      isFinished: boolean
+      /** Isvip */
+      isVip: boolean
+      /** Prizeamount */
+      prizeAmount: number
+      /** Allowedhinttypes */
+      allowedHintTypes: components['schemas']['HintSchema'][]
+      /** Formattedprize */
+      formattedPrize: number | string
+      /** Constraints */
+      constraints: components['schemas']['ConstraintSchema'][]
+      /** ID */
+      id?: number | null
+      /** Title */
+      title: string
+      /** Details */
+      details?: string | null
+      /**
+       * Created At
+       * Format: date-time
+       */
+      createdAt: string
+      /** Start At */
+      startAt?: string | null
+      /** Chain Id */
+      chainId?: number | null
+      /**
+       * Language
+       * @default en
+       */
+      language: string
+      /**
+       * Token Decimals
+       * @default 18
+       */
+      tokenDecimals: number | null
+      /** Token */
+      token?: string | null
+      /** Token Address */
+      tokenAddress?: string | null
+      /** Discord Url */
+      discordUrl?: string | null
+      /** Twitter Url */
+      twitterUrl?: string | null
+      /** Email Url */
+      emailUrl: string
+      /** Telegram Url */
+      telegramUrl?: string | null
+      /** Token Image */
+      tokenImage?: string | null
+      /** Image */
+      image?: string | null
+      /**
+       * Shuffle Answers
+       * @default false
+       */
+      shuffleAnswers: boolean
+      /**
+       * Split Prize
+       * @default true
+       */
+      splitPrize: boolean
+      /**
+       * Max Participants
+       * @default 0
+       */
+      maxParticipants: number
+      /**
+       * Is Winners Announced
+       * @default false
+       */
+      isWinnersAnnounced: boolean
+      /** Constraint Params */
+      constraintParams?: string | null
+      /** Reversed Constraints */
+      reversedConstraints?: string | null
+      /** Referral Code */
+      referralCode?: string | null
+      /** Tx Hash */
+      txHash?: string | null
+      /**
+       * Is Demo
+       * @default false
+       */
+      isDemo: boolean
+      /**
+       * Is Active
+       * @default true
+       */
+      isActive: boolean
+      /**
+       * Is Sandbox
+       * @default false
+       */
+      isSandbox: boolean
+      /**
+       * Is Testnet
+       * @default false
+       */
+      isTestnet: boolean
+      /**
+       * Lives
+       * @default 1
+       */
+      lives: number
+      /**
+       * Hint Count
+       * @default 1
+       */
+      hintCount: number
+      /**
+       * Question Time Seconds
+       * @default 14
+       */
+      questionTimeSeconds: number
+      /**
+       * Question Hint Time Seconds
+       * @default 4
+       */
+      questionHintTimeSeconds: number
+      /**
+       * Rest Time Seconds
+       * @default 9
+       */
+      restTimeSeconds: number
+      /** Announce Winners Api Url */
+      announceWinnersApiUrl?: string | null
+      /** Api Response */
+      apiResponse?: string | null
+      /** Api Error Response */
+      apiErrorResponse?: string | null
+    }
+    /** ChoiceCreateSchema */
+    ChoiceCreateSchema: {
+      /** Text */
+      text: string
+      /**
+       * Iscorrect
+       * @default false
+       */
+      isCorrect: boolean
+      /**
+       * Ishintedchoice
+       * @default false
+       */
+      isHintedChoice: boolean
+    }
+    /** CompetitionCreateSchema */
+    CompetitionCreateSchema: {
+      /** Title */
+      title: string
+      /** Details */
+      details?: string | null
+      /**
+       * Startat
+       * Format: date-time
+       */
+      startAt: string
+      /** Image */
+      image?: string | null
+      /** Tokenimage */
+      tokenImage?: string | null
+      /** Prizeamount */
+      prizeAmount: number | string
+      /** Chainid */
+      chainId?: number | null
+      /** Token */
+      token?: string | null
+      /**
+       * Tokendecimals
+       * @default 18
+       */
+      tokenDecimals: number | null
+      /** Tokenaddress */
+      tokenAddress?: string | null
+      /** Emailurl */
+      emailUrl: string
+      /** Telegramurl */
+      telegramUrl?: string | null
+      /** Discordurl */
+      discordUrl?: string | null
+      /** Twitterurl */
+      twitterUrl?: string | null
+      /**
+       * Shuffleanswers
+       * @default false
+       */
+      shuffleAnswers: boolean
+      /**
+       * Splitprize
+       * @default true
+       */
+      splitPrize: boolean
+      /**
+       * Maxparticipants
+       * @default 1000
+       */
+      maxParticipants: number
+      /**
+       * Language
+       * @default en
+       */
+      language: string
+      /**
+       * Constraints
+       * @default []
+       */
+      constraints: number[]
+      /**
+       * Constraintparams
+       * @default {}
+       */
+      constraintParams: {
+        [key: string]: unknown
+      }
+      /**
+       * Lives
+       * @default 1
+       */
+      lives: number
+      /**
+       * Hintcount
+       * @default 1
+       */
+      hintCount: number
+      /**
+       * Questiontimeseconds
+       * @default 14
+       */
+      questionTimeSeconds: number
+      /**
+       * Questionhinttimeseconds
+       * @default 4
+       */
+      questionHintTimeSeconds: number
+      /**
+       * Resttimeseconds
+       * @default 9
+       */
+      restTimeSeconds: number
+      /**
+       * Hints
+       * @default []
+       */
+      hints: components['schemas']['CompetitionHintCreateSchema'][]
+      /** Announcewinnersapiurl */
+      announceWinnersApiUrl?: string | null
+      /** Questions */
+      questions: components['schemas']['QuestionCreateSchema'][]
+      /**
+       * Resources
+       * @default []
+       */
+      resources: components['schemas']['ResourceCreateSchema'][] | null
+      /** Referralcode */
+      referralCode?: string | null
+    }
+    /** CompetitionHintCreateSchema */
+    CompetitionHintCreateSchema: {
+      /** Hintid */
+      hintId: number
+      /** Count */
+      count: number
+    }
+    /** QuestionCreateSchema */
+    QuestionCreateSchema: {
+      /** Number */
+      number: number
+      /** Text */
+      text: string
+      /**
+       * Creator
+       * @default Wits Team
+       */
+      creator: string
+      /** Choices */
+      choices: components['schemas']['ChoiceCreateSchema'][]
+    }
+    /** ResourceCreateSchema */
+    ResourceCreateSchema: {
+      /** Title */
+      title: string
+      /** Content */
+      content: string
+      /** Link */
+      link?: string | null
+      /** Linktext */
+      linkText?: string | null
+      /**
+       * Isactive
+       * @default true
+       */
+      isActive: boolean
+      /** Image */
+      image?: string | null
+    }
     /** UserProfileSchema */
     UserProfileSchema: {
       /** Wallets */
@@ -684,7 +1052,10 @@ export interface components {
       pk: number
       /** Walletaddress */
       walletAddress: string
-      /** Createdat */
+      /**
+       * Createdat
+       * Format: date-time
+       */
       createdAt: string
     }
     /** TelegramAuthIn */
@@ -775,6 +1146,26 @@ export interface operations {
         }
         content: {
           'application/json': string
+        }
+      }
+    }
+  }
+  quiz_apis_competitions_api_user_competitions: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionEnrollOut'][]
         }
       }
     }
@@ -967,6 +1358,70 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+    }
+  }
+  dashboard_api_competition_dashboard_api_get_all_competitions_list: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionSchema'][]
+        }
+      }
+    }
+  }
+  dashboard_api_competition_dashboard_api_create_competition: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CompetitionCreateSchema']
+      }
+    }
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  dashboard_api_competition_dashboard_api_get_competition: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        competition_pk: number
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          'application/json': components['schemas']['CompetitionCreateSchema']
+        }
       }
     }
   }

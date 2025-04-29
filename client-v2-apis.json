@@ -71,6 +71,33 @@
       }
     },
     "/v2/quiz/competitions/enroll/": {
+      "get": {
+        "operationId": "quiz_apis_competitions_api_user_competitions",
+        "summary": "User Competitions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CompetitionEnrollOut"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Quiz Management"],
+        "security": [
+          {
+            "NinjaJWTAuth": []
+          }
+        ]
+      },
       "post": {
         "operationId": "quiz_apis_competitions_api_enroll_to_competition",
         "summary": "Enroll To Competition",
@@ -355,6 +382,96 @@
         "tags": ["Quiz Sandbox"]
       }
     },
+    "/v2/dashboard/competitions/": {
+      "get": {
+        "operationId": "dashboard_api_competition_dashboard_api_get_all_competitions_list",
+        "summary": "Get All Competitions List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CompetitionSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Quiz Creation Dashboard"],
+        "security": [
+          {
+            "NinjaJWTAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_api_competition_dashboard_api_create_competition",
+        "summary": "Create Competition",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": ["Quiz Creation Dashboard"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompetitionCreateSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "NinjaJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/dashboard/competitions/{competition_pk}/": {
+      "get": {
+        "operationId": "dashboard_api_competition_dashboard_api_get_competition",
+        "summary": "Get Competition",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "competition_pk",
+            "schema": {
+              "title": "Competition Pk",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetitionCreateSchema"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Quiz Creation Dashboard"],
+        "security": [
+          {
+            "NinjaJWTAuth": []
+          }
+        ]
+      }
+    },
     "/v2/auth/telegram-login/": {
       "post": {
         "operationId": "authentication_api_telegram_login_api_telegram_auth_mini_app",
@@ -449,6 +566,74 @@
         },
         "required": ["referralCode"],
         "title": "ReferralValidateSchema",
+        "type": "object"
+      },
+      "CompetitionEnrollOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "registeredHints": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Registeredhints",
+            "type": "array"
+          },
+          "userId": {
+            "title": "Userid",
+            "type": "integer"
+          },
+          "isWinner": {
+            "title": "Iswinner",
+            "type": "boolean"
+          },
+          "amountWon": {
+            "title": "Amountwon",
+            "type": "string"
+          },
+          "hintCount": {
+            "title": "Hintcount",
+            "type": "integer"
+          },
+          "txHash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Txhash"
+          },
+          "lives": {
+            "title": "Lives",
+            "type": "integer"
+          },
+          "userProfile": {
+            "title": "Userprofile",
+            "type": "integer"
+          },
+          "competition": {
+            "title": "Competition",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "registeredHints",
+          "userId",
+          "isWinner",
+          "amountWon",
+          "hintCount",
+          "txHash",
+          "lives",
+          "userProfile",
+          "competition"
+        ],
+        "title": "CompetitionEnrollOut",
         "type": "object"
       },
       "CompetitionEnrollIn": {
@@ -1705,6 +1890,777 @@
         "title": "CompetitionCheckConstraintSchema",
         "type": "object"
       },
+      "CompetitionSchema": {
+        "properties": {
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/SmallQuestionSchema"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "sponsors": {
+            "items": {
+              "$ref": "#/components/schemas/SponsorSchema"
+            },
+            "title": "Sponsors",
+            "type": "array"
+          },
+          "participantsCount": {
+            "title": "Participantscount",
+            "type": "integer"
+          },
+          "userProfile": {
+            "title": "Userprofile",
+            "type": "integer"
+          },
+          "builtInHints": {
+            "items": {
+              "$ref": "#/components/schemas/CompetitionHintSchema"
+            },
+            "title": "Builtinhints",
+            "type": "array"
+          },
+          "isFinished": {
+            "title": "Isfinished",
+            "type": "boolean"
+          },
+          "isVip": {
+            "title": "Isvip",
+            "type": "boolean"
+          },
+          "prizeAmount": {
+            "title": "Prizeamount",
+            "type": "integer"
+          },
+          "allowedHintTypes": {
+            "items": {
+              "$ref": "#/components/schemas/HintSchema"
+            },
+            "title": "Allowedhinttypes",
+            "type": "array"
+          },
+          "formattedPrize": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Formattedprize"
+          },
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/ConstraintSchema"
+            },
+            "title": "Constraints",
+            "type": "array"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "ID"
+          },
+          "title": {
+            "maxLength": 255,
+            "title": "Title",
+            "type": "string"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "startAt": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start At"
+          },
+          "chainId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chain Id"
+          },
+          "language": {
+            "default": "en",
+            "maxLength": 10,
+            "title": "Language",
+            "type": "string"
+          },
+          "tokenDecimals": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 18,
+            "title": "Token Decimals"
+          },
+          "token": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Token"
+          },
+          "tokenAddress": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Token Address"
+          },
+          "discordUrl": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discord Url"
+          },
+          "twitterUrl": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Twitter Url"
+          },
+          "emailUrl": {
+            "maxLength": 255,
+            "title": "Email Url",
+            "type": "string"
+          },
+          "telegramUrl": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telegram Url"
+          },
+          "tokenImage": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Token Image"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          },
+          "shuffleAnswers": {
+            "default": false,
+            "title": "Shuffle Answers",
+            "type": "boolean"
+          },
+          "splitPrize": {
+            "default": true,
+            "title": "Split Prize",
+            "type": "boolean"
+          },
+          "maxParticipants": {
+            "default": 0,
+            "title": "Max Participants",
+            "type": "integer"
+          },
+          "isWinnersAnnounced": {
+            "default": false,
+            "title": "Is Winners Announced",
+            "type": "boolean"
+          },
+          "constraintParams": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Constraint Params"
+          },
+          "reversedConstraints": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reversed Constraints"
+          },
+          "referralCode": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Referral Code"
+          },
+          "txHash": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tx Hash"
+          },
+          "isDemo": {
+            "default": false,
+            "title": "Is Demo",
+            "type": "boolean"
+          },
+          "isActive": {
+            "default": true,
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "isSandbox": {
+            "default": false,
+            "title": "Is Sandbox",
+            "type": "boolean"
+          },
+          "isTestnet": {
+            "default": false,
+            "title": "Is Testnet",
+            "type": "boolean"
+          },
+          "lives": {
+            "default": 1,
+            "title": "Lives",
+            "type": "integer"
+          },
+          "hintCount": {
+            "default": 1,
+            "title": "Hint Count",
+            "type": "integer"
+          },
+          "questionTimeSeconds": {
+            "default": 14,
+            "title": "Question Time Seconds",
+            "type": "integer"
+          },
+          "questionHintTimeSeconds": {
+            "default": 4,
+            "title": "Question Hint Time Seconds",
+            "type": "integer"
+          },
+          "restTimeSeconds": {
+            "default": 9,
+            "title": "Rest Time Seconds",
+            "type": "integer"
+          },
+          "announceWinnersApiUrl": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Announce Winners Api Url"
+          },
+          "apiResponse": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Api Response"
+          },
+          "apiErrorResponse": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Api Error Response"
+          }
+        },
+        "required": [
+          "questions",
+          "sponsors",
+          "participantsCount",
+          "userProfile",
+          "builtInHints",
+          "isFinished",
+          "isVip",
+          "prizeAmount",
+          "allowedHintTypes",
+          "formattedPrize",
+          "constraints",
+          "title",
+          "createdAt",
+          "emailUrl"
+        ],
+        "title": "CompetitionSchema",
+        "type": "object"
+      },
+      "ChoiceCreateSchema": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "isCorrect": {
+            "default": false,
+            "title": "Iscorrect",
+            "type": "boolean"
+          },
+          "isHintedChoice": {
+            "default": false,
+            "title": "Ishintedchoice",
+            "type": "boolean"
+          }
+        },
+        "required": ["text"],
+        "title": "ChoiceCreateSchema",
+        "type": "object"
+      },
+      "CompetitionCreateSchema": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          },
+          "startAt": {
+            "format": "date-time",
+            "title": "Startat",
+            "type": "string"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          },
+          "tokenImage": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tokenimage"
+          },
+          "prizeAmount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Prizeamount"
+          },
+          "chainId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chainid"
+          },
+          "token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Token"
+          },
+          "tokenDecimals": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 18,
+            "title": "Tokendecimals"
+          },
+          "tokenAddress": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tokenaddress"
+          },
+          "emailUrl": {
+            "title": "Emailurl",
+            "type": "string"
+          },
+          "telegramUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telegramurl"
+          },
+          "discordUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discordurl"
+          },
+          "twitterUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Twitterurl"
+          },
+          "shuffleAnswers": {
+            "default": false,
+            "title": "Shuffleanswers",
+            "type": "boolean"
+          },
+          "splitPrize": {
+            "default": true,
+            "title": "Splitprize",
+            "type": "boolean"
+          },
+          "maxParticipants": {
+            "default": 1000,
+            "title": "Maxparticipants",
+            "type": "integer"
+          },
+          "language": {
+            "default": "en",
+            "title": "Language",
+            "type": "string"
+          },
+          "constraints": {
+            "default": [],
+            "items": {
+              "type": "integer"
+            },
+            "title": "Constraints",
+            "type": "array"
+          },
+          "constraintParams": {
+            "additionalProperties": true,
+            "default": {},
+            "title": "Constraintparams",
+            "type": "object"
+          },
+          "lives": {
+            "default": 1,
+            "title": "Lives",
+            "type": "integer"
+          },
+          "hintCount": {
+            "default": 1,
+            "title": "Hintcount",
+            "type": "integer"
+          },
+          "questionTimeSeconds": {
+            "default": 14,
+            "title": "Questiontimeseconds",
+            "type": "integer"
+          },
+          "questionHintTimeSeconds": {
+            "default": 4,
+            "title": "Questionhinttimeseconds",
+            "type": "integer"
+          },
+          "restTimeSeconds": {
+            "default": 9,
+            "title": "Resttimeseconds",
+            "type": "integer"
+          },
+          "hints": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/CompetitionHintCreateSchema"
+            },
+            "title": "Hints",
+            "type": "array"
+          },
+          "announceWinnersApiUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Announcewinnersapiurl"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionCreateSchema"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "resources": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ResourceCreateSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": [],
+            "title": "Resources"
+          },
+          "referralCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Referralcode"
+          }
+        },
+        "required": [
+          "title",
+          "startAt",
+          "prizeAmount",
+          "emailUrl",
+          "questions"
+        ],
+        "title": "CompetitionCreateSchema",
+        "type": "object"
+      },
+      "CompetitionHintCreateSchema": {
+        "properties": {
+          "hintId": {
+            "title": "Hintid",
+            "type": "integer"
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": ["hintId", "count"],
+        "title": "CompetitionHintCreateSchema",
+        "type": "object"
+      },
+      "QuestionCreateSchema": {
+        "properties": {
+          "number": {
+            "title": "Number",
+            "type": "integer"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "creator": {
+            "default": "Wits Team",
+            "title": "Creator",
+            "type": "string"
+          },
+          "choices": {
+            "items": {
+              "$ref": "#/components/schemas/ChoiceCreateSchema"
+            },
+            "title": "Choices",
+            "type": "array"
+          }
+        },
+        "required": ["number", "text", "choices"],
+        "title": "QuestionCreateSchema",
+        "type": "object"
+      },
+      "ResourceCreateSchema": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "link": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link"
+          },
+          "linkText": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Linktext"
+          },
+          "isActive": {
+            "default": true,
+            "title": "Isactive",
+            "type": "boolean"
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image"
+          }
+        },
+        "required": ["title", "content"],
+        "title": "ResourceCreateSchema",
+        "type": "object"
+      },
       "UserProfileSchema": {
         "properties": {
           "wallets": {
@@ -1771,6 +2727,7 @@
             "type": "string"
           },
           "createdAt": {
+            "format": "date-time",
             "title": "Createdat",
             "type": "string"
           }
